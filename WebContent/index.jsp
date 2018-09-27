@@ -31,13 +31,13 @@
   
 <script type="text/javascript">
   function showRegister() {
-    document.getElementById("register-box").style.display = null;
+    document.getElementById("register-box").style.display = 'table';
     document.getElementById("login-box").style.display = 'none';
     document.getElementById("section-track").style.display = 'none';
     document.getElementById("section-book").style.display = 'none';
   }
   function showLogin() {
-    document.getElementById("login-box").style.display = null;
+    document.getElementById("login-box").style.display = 'table';
     document.getElementById("register-box").style.display = 'none';
     document.getElementById("section-track").style.display = 'none';
     document.getElementById("section-book").style.display = 'none';
