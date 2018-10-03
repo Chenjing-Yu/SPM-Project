@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta charset="utf-8">
@@ -117,15 +119,15 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form role="form">
+          <form  action="BookController" method="post">
             <!-- text input -->
             <div class="form-group">
               <label>Number of Boxes</label>
-              <input type="number" class="form-control" placeholder="1, 2, 3..." required>
+              <input type="number" class="form-control" placeholder="1, 2, 3..." required value="quantity">
             </div>
             <div class="form-group">
               <label>Recieving Address</label>
-              <input type="text" class="form-control" placeholder="Address in Jakarta" required>
+              <input type="text" class="form-control" placeholder="Address in Jakarta" required value="address">
             </div>
             <div class="form-group">
               <label>Pick-up Address</label>
@@ -139,7 +141,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" class="form-control pull-right" id="reservation" required>
+                <input type="text" class="form-control pull-right" id="reservation" required value="departureDate">
               </div>
             </div>
             <!-- Date -->
@@ -149,7 +151,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="date" class="form-control pull-right" id="datepicker1" required>
+                <input type="date" class="form-control pull-right" id="datepicker1" required value="departureDate">
               </div>
               <!-- /.input group -->
             </div>
@@ -174,13 +176,13 @@
             <div class="row row-check">
                 <div class="col-xs-9">
                 </div>
-        <!-- /.col -->
-                <div class="col-xs-3">
+      
+            </div>
+            <div class="col-xs-3">
+                	
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
                 </div>
-        <!-- /.col -->
-            </div>
-              </form>
+            </form>
             </div>
             <!-- /.box-body -->
           </div>
