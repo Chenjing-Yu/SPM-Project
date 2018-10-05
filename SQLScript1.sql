@@ -15,7 +15,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 DROP SCHEMA IF EXISTS `mydb` ;
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema mydbLastName
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
@@ -27,10 +27,9 @@ DROP TABLE IF EXISTS `mydb`.`Customer` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Customer` (
   `CustomerID` INT NOT NULL AUTO_INCREMENT,
-  `LastName` VARCHAR(20) NOT NULL,
-  `FirstName` VARCHAR(20) NOT NULL,
-  `Address` VARCHAR(50) NOT NULL,
+  `FullName` VARCHAR(20) NOT NULL,
   `EmailAddress` VARCHAR(30) NOT NULL,
+  `Address` VARCHAR(50) NOT NULL,
   `PhoneNUM` CHAR(10) NOT NULL,
   `Password` VARCHAR(20) NOT NULL,
   `City` VARCHAR(20) NULL,

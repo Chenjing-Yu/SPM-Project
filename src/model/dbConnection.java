@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class dbConnection {
     
-    private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/spm?useSSL=false";
+    private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/mydb?useSSL=false";
    
     private static final String DB_USER = "root";
 
@@ -19,7 +19,7 @@ public class dbConnection {
         try {    
     
                 Connection dbConnection = getDBConnection();
-                System.out.println("Db COnnection successful");
+                System.out.println("Db Connection successful");
                 
             preparedStatement = dbConnection.prepareStatement(stm);
             
@@ -42,7 +42,7 @@ public class dbConnection {
            
             Connection dbConnection = DriverManager.getConnection(
                             DB_CONNECTION, DB_USER,DB_PASSWORD);
-            System.out.println("Db COnnection successful");
+            System.out.println("Db Connection successful");
             return dbConnection;
 
         } catch (SQLException e) {

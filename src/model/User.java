@@ -93,19 +93,20 @@ public class User {
 	
 	    	
 	    	String[] names =fullname.split("\\s+");
-	        PreparedStatement ps = conn.prepare("INSERT INTO CustomerID,LargeBoxQuantity,MediumBoxQuantity,SmallBoxQuantity,"
-	        		+ ",CustomerMessage,PreferredDeparture,EstimateArrival,BookingTime,Cost,ShipperID,Status"
-	        		+ ",HBL"
-	        		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?, ?,?)");
-	        ps.setString(1, username);
-	 
-	        //shipper ID
-	        ps.setInt(10, 1);
-	        //shipment status
-	        ps.setInt(11,1);
-	        ps.setString(12, "HBLGH234LJWEI224K42424243DKNKCKFF56");
+//	        PreparedStatement ps = conn.prepare("INSERT INTO CustomerID,LargeBoxQuantity,MediumBoxQuantity,SmallBoxQuantity,"
+//	        		+ ",CustomerMessage,PreferredDeparture,EstimateArrival,BookingTime,Cost,ShipperID,Status"
+//	        		+ ",HBL"
+//	        		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?, ?,?)");
+//	        ps.setString(1, username);
+	    	PreparedStatement ps = conn.prepare("INSERT INTO customer (FullName, EmailAddress, Address, PhoneNUM, Password)"
+	    			+ " VALUES ('" + fullname + "','" + username + "','" + address + "','" + phone + "','" + password + "');");
+ 
+//	        //shipper ID
+//	        ps.setInt(10, 1);
+//	        //shipment status
+//	        ps.setInt(11,1);
+//	        ps.setString(12, "HBLGH234LJWEI224K42424243DKNKCKFF56");
 	        int i = ps.executeUpdate();
-	        
 	        readDB();
 	      if(i == 1) {
 	        return true;
@@ -119,7 +120,7 @@ public class User {
 	private void readDB() throws SQLException {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("static-access")
-		PreparedStatement ps = conn.prepare("SELECT*FROM User");
+		PreparedStatement ps = conn.prepare("SELECT * FROM customer");
 		ResultSet rs = ps.executeQuery();
 		
 		System.out.println(rs);
