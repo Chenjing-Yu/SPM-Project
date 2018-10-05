@@ -153,23 +153,29 @@ public boolean insertUser() {
 			int largeBoxes;
 			dbConnection conn;
     	 */
-        PreparedStatement ps = conn.prepare("INSERT INTO user VALUES (NULL, ?, ?, ?)");
-        ps.setString(2, customerID);
-        ps.setInt(3, largeBoxes);
-        ps.setInt(4, medBoxes);
-        ps.setInt(5, smallBoxes );
-        ps.setString(6, message);
-        ps.setDate(7, departureDate);
+        PreparedStatement ps = conn.prepare("INSERT INTO CustomerID,LargeBoxQuantity,MediumBoxQuantity,SmallBoxQuantity,"
+        		+ ",CustomerMessage,PreferredDeparture,EstimateArrival,BookingTime,Cost,ShipperID,Status"
+        		+ ",HBL"
+        		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?, ?,?)");
+        ps.setInt(1, 1);
+        ps.setInt(2, largeBoxes);
+        ps.setInt(3, medBoxes);
+        ps.setInt(4, smallBoxes );
+        ps.setString(5, message);
+        ps.setDate(6, departureDate);
         /*
          * one day has 86400000 milliseconds
          * multiply 5 for estimate of 5 days
          */
         Date estimatedDate = new Date(new java.util.Date().getTime() + (86400000*5));
-        ps.setDate(8, estimatedDate);
-        ps.setTimestamp(9,new Timestamp(System.currentTimeMillis()));
-        ps.setBigDecimal(10, getCost());
-        ps.setInt(11, 1);
-        ps.setInt(12,1);
+        ps.setDate(7, estimatedDate);
+        ps.setTimestamp(8,new Timestamp(System.currentTimeMillis()));
+        ps.setBigDecimal(9, getCost());
+        //shipper ID
+        ps.setInt(10, 1);
+        //shipment status
+        ps.setInt(11,1);
+        ps.setString(12, "HBLGH234LJWEI224K42424243DKNKCKFF56");
         int i = ps.executeUpdate();
         
         readDB();
