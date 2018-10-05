@@ -137,27 +137,27 @@
             <p class="login-box-msg">Register a new membership</p>
             <form action="RegisterController" method="post">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Full name">
+                <input type="text" name ="fullname" class="form-control" placeholder="Full name">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="email" name ="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="address" class="form-control" placeholder="Address">
+                <input type="address" name ="address" class="form-control" placeholder="Address">
                 <span class="glyphicon glyphicon-home form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="phone" class="form-control" placeholder="Phone number">
+                <input type="phone" name ="phone" class="form-control" placeholder="Phone number">
                 <span class="glyphicon glyphicon-phone form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" name ="password" class="form-control" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Retype password">
+                <input type="password" name ="password2" class="form-control" placeholder="Retype password">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
             </div>
             <div class="row row-check">
