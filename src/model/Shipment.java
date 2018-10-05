@@ -15,9 +15,9 @@ public class Shipment {
 	 */
 	
 	
-	public static int costOfSmallBox =5;
-	public static int costOfMedBox =15;
-	public static int costOfLrgBox =25;
+	public static int costOfSmallBox =35;
+	public static int costOfMedBox =55;
+	public static int costOfLrgBox =85;
 	
 	/*
 	 * Table fields for Shipment table in database
