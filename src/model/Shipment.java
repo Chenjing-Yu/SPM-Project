@@ -128,14 +128,14 @@ public class Shipment {
 	
 	public boolean createRecord() throws SQLException {
 		
-		boolean result= insertUser();
+		boolean result= insertUserShipment();
 		return result;
 	}
 	public BigDecimal  getCost() {	return new BigDecimal( Integer.parseInt(quantity)*costOfSmallBox);	}
 	
 	
 
-public boolean insertUser() {
+public boolean insertUserShipment() {
     
     try {
     	/*
@@ -190,6 +190,7 @@ public boolean insertUser() {
 
 private void readDB() throws SQLException {
 	// TODO Auto-generated method stub
+	@SuppressWarnings("static-access")
 	PreparedStatement ps = conn.prepare("SELECT*FROM Shipping");
 	ResultSet rs = ps.executeQuery();
 	
