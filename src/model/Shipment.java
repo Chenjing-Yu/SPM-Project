@@ -199,7 +199,7 @@ public boolean insertUserShipment() {
 private void readDB() throws SQLException {
 	// TODO Auto-generated method stub
 	@SuppressWarnings("static-access")
-	PreparedStatement ps = conn.prepare("SELECT*FROM Shipping");
+	PreparedStatement ps = conn.prepare("SELECT * FROM Shipping");
 	ResultSet rs = ps.executeQuery();
 	
 	System.out.println(rs);
