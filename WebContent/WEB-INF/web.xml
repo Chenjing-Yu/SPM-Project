@@ -23,4 +23,18 @@
     <servlet-name>BookController</servlet-name>
     <servlet-class>controller.BookController</servlet-class>
   </servlet>
+  
+  <!-- SMTP settings -->
+    <context-param>
+        <param-name>host</param-name>
+        <param-value>smtp.gmail.com</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>port</param-name>
+        <param-value>587</param-value>
+    </context-param>
+ 
+   
+    
 </web-app>

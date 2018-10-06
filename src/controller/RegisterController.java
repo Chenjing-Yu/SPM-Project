@@ -1,9 +1,15 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +34,20 @@ public class RegisterController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    private String host;
+    private String port;
+    private String user;
+    private String pass;
+ 
+    public void init() {
+        // reads SMTP server setting from web.xml file
+        ServletContext context = getServletContext();
+        host = context.getInitParameter("host");
+        port = context.getInitParameter("port");
+       
+    }
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -50,14 +70,21 @@ public class RegisterController extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
 		String password2 = request.getParameter("password2");
-		String EmailContent = "Hello your ID has been created successfully , stay tuned for updates!";
+		String EmailContent = "1";
 		
-		User  user =new User(fullname,username,address,phone,password);
+		User  newUser =new User(fullname,username,address,phone,password);
 		
-		boolean createRecord = user.createRecord();
+		boolean createRecord = newUser.createRecord();
 		if(createRecord) {
 		System.out.println("User record has been successfuly created: "+username);
-//		Mailer.sendMail(username, EmailContent);
+		System.out.println("**********");
+		try {
+			Mailer.sendEmail(host, port, username, EmailContent);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        System.out.println("**********");
 		PrintWriter out = response.getWriter();  
 		response.setContentType("text/html");  
 		out.println("<script type=\"text/javascript\">");  
@@ -71,7 +98,26 @@ public class RegisterController extends HttpServlet {
 		
 		
 		
+		
+		
 	}
+	
+	private static void printLines(String cmd, InputStream ins) throws Exception {
+        String line = null;
+        BufferedReader in = new BufferedReader(
+            new InputStreamReader(ins));
+        while ((line = in.readLine()) != null) {
+            System.out.println(cmd + " " + line);
+        }
+      }
+
+      private static void runProcess(String command) throws Exception {
+        Process pro = Runtime.getRuntime().exec(command);
+        printLines(command + " stdout:", pro.getInputStream());
+        printLines(command + " stderr:", pro.getErrorStream());
+        pro.waitFor();
+        System.out.println(command + " exitValue() " + pro.exitValue());
+      }
 		
 		
 	}
