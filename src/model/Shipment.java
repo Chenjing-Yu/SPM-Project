@@ -45,7 +45,7 @@ public class Shipment {
 		this.arrivalDate = arrivalDate2;
 		this.message = message2;
 		
-		this.collectorID = "C1";
+		this.collectorID = "1";
 		this.customerID = CustomerID;
 	}
 	
@@ -158,6 +158,63 @@ public boolean insertUserShipment() {
 			dbConnection conn;
     	 */
         PreparedStatement ps = conn.prepare("INSERT INTO Shipping(CustomerID,Quantity,CustomerMessage"
+        		+ ",PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,Status,CollectorID"
+        		+ ",DeliveryAddress,HBL) "
+        		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?,?,?)");
+        ps.setInt(1, 1);
+        ps.setInt(2, Integer.parseInt(quantity));
+        ps.setString(3, message);
+        ps.setDate(4, departureDate );
+        ps.setDate(5, arrivalDate );
+        /*
+         * one day has 86400000 milliseconds
+         * multiply 5 for estimate of 5 days
+         */
+        //Date estimatedDate = new Date(new java.util.Date().getTime() + (86400000*5));
+        //ps.setDate(7, estimatedDate);
+        ps.setTimestamp(6,new Timestamp(System.currentTimeMillis()));
+        ps.setBigDecimal(7, getCost());
+        //shipper ID
+        ps.setInt(8, 1);
+        //shipment status
+        ps.setInt(9,1);
+        //Collector ID
+        ps.setInt(10, 1);
+        //Delivery address
+        ps.setString(11, address);
+        //HBL
+        ps.setString(12, "HBLGH234LJWEI224K42424243DKNKCKFF56");
+        int i = ps.executeUpdate();
+        
+        readDB();
+      if(i == 1) {
+        return true;
+      }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return false;
+}
+
+public boolean ackUserShipment() {
+    
+    try {
+    	/*
+    	 * 	String quantity ;
+			String address ;
+			String departureDate;
+			String arrivalDate ;
+			String message;
+			String orderId;
+			String collectorID;
+			String shipmentID;
+			String customerID;
+			int medBoxes;
+			int smallBoxes;
+			int largeBoxes;
+			dbConnection conn;
+    	 */
+        PreparedStatement ps = conn.prepare("UPDATE Shipping(CustomerID,Quantity,CustomerMessage"
         		+ ",PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,Status,CollectorID"
         		+ ",DeliveryAddress,HBL) "
         		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?,?,?)");
