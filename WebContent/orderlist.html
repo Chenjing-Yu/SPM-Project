@@ -114,21 +114,46 @@
               <table class="table table-bordered">
                 <tr>
                   <th style="width: 10px">No</th>
+                  <th>Customer</th>
                   <th>Ordered time</th>
                   <th>Box quantity</th>
+                  <th>Preferred Departure</th>
+                  <th>Preferred Arrival</th>
+                  <th>Pick-up Address</th>
                   <th>Status</th>
-                  <th>Arrival estimation</th>
                   <th>Cost</th>
                   <th style="width: 40px">Option</th>
                 </tr>
                 <tr>
                   <td>00000001</td>
+                  <td>Alenxander</td>
                   <td>15/09/2018</td>
                   <td>3</td>
-                  <td>Shipped</td>
+                  <td>16/09/2018</td>
                   <td>15/10/2018</td>
+                  <td>XXX 444 Lygon Str. Carlton</td>
+                  <td>
+                    <div class="form-group">
+                      <select class="form-control">
+                        <option>Current</option>
+                        <option>To be Approved</option>
+                        <option>Request Accepted</option>
+                        <option>Pick-up Scheduled</option>
+                        <option>To be Shipped</option>
+                        <option>Shipped</option>
+                        <option>Arrived at Destination</option>
+                        <option>Delivered</option>
+                        <option>Delivery Delayed</option>
+                      </select>
+                      <button type="submit" class="btn btn-primary btn-block btn-flat" onClick="">Update</button>
+                    </div>
+                  </td>
                   <td>$105</td>
-                  <td><a href="details.html">Details</a></td>
+                  <td>
+                  <ul>
+                  <li><a href="ackbook.html">Acknowledge</a></li>
+                  <li><a href="details.html">Details</a></li>
+                  </ul></td>
                 </tr>
               </table>
             </div>

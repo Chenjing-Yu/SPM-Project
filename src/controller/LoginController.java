@@ -31,10 +31,12 @@ public class LoginController extends HttpServlet {
 		Authenticator authenticator = new Authenticator();
 		String result = authenticator.authenticate(username, password);
 		if (result.equals("success")) {
-			rd = request.getRequestDispatcher("/book.jsp");
+			rd = request.getRequestDispatcher("index.jsp");
 			User user = new User(username, password);
 			user.queryUser();
-			request.setAttribute("user", user);
+			request.getSession().setAttribute("fullname", user.getFullname());
+			request.getSession().setAttribute("username", user.getUsername());
+			request.getSession().setAttribute("password", user.getPassword());
 		} else {
 			//rd = request.getRequestDispatcher("/error.jsp");
 			PrintWriter out = response.getWriter();  
