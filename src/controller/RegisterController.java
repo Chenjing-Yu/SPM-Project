@@ -56,13 +56,13 @@ public class RegisterController extends HttpServlet {
 		
 		boolean createRecord = user.createRecord();
 		if(createRecord) {
-		System.out.println("User record has been successfuly created"+username);
-		Mailer.sendMail(username, EmailContent);
+		System.out.println("User record has been successfuly created: "+username);
+//		Mailer.sendMail(username, EmailContent);
 		PrintWriter out = response.getWriter();  
 		response.setContentType("text/html");  
 		out.println("<script type=\"text/javascript\">");  
-		out.println("alert('order success');");  
-		out.println("window.location = 'index.jsp';");
+		out.println("alert('register success');");  
+		out.println("window.location.href = 'index.jsp';");
 		out.println("</script>");
 		}
 		else {rd = request.getRequestDispatcher("/error.jsp");}

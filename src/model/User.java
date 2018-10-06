@@ -107,7 +107,7 @@ public class User {
 //	        ps.setInt(11,1);
 //	        ps.setString(12, "HBLGH234LJWEI224K42424243DKNKCKFF56");
 	        int i = ps.executeUpdate();
-	        readDB();
+	        //readDB();
 	      if(i == 1) {
 	        return true;
 	      }
@@ -117,10 +117,34 @@ public class User {
 	    return false;
 	}
 
+	public boolean queryUser(){
+		boolean res = false;
+		try {
+			String sql = "SELECT FullName, EmailAddress, Address, PhoneNUM, Password FROM customer where EmailAddress='"
+		+username+"' and Password='"+password;
+			PreparedStatement ps = conn.prepare(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				fullname = rs.getString(1);
+				address = rs.getString(3);
+				phone = rs.getString(4);
+				res = true;
+			}
+			else {
+				//user doesn't exist
+			}
+			rs.close();
+			//conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				}
+		return res;
+	}
+	
 	private void readDB() throws SQLException {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("static-access")
-		PreparedStatement ps = conn.prepare("SELECT * FROM customer");
+		PreparedStatement ps = conn.prepare("SELECT * FROM customer where EmailAddress='"+username+"' and Password='"+password);
 		ResultSet rs = ps.executeQuery();
 		
 		System.out.println(rs);
