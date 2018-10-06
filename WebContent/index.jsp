@@ -30,7 +30,7 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
+
 <script type="text/javascript">
 <% String fullname = (String)session.getAttribute("fullname");
 %>
@@ -47,7 +47,7 @@
     document.getElementById("section-book").style.display = 'none';
   }
 </script>
-  
+
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -69,7 +69,6 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="boxFly.html">Home<span class="sr-only">(current)</span></a></li>
             <li><a href="#">Order Shipment</a></li>
-            <li><a href="#">Track Order</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
         </div>
@@ -259,18 +258,6 @@
             <button type="button" class="btn btn-block btn-lg">Book a shipment</button>
           </div>
         </div>
-      </section>
-      <section id="section-box" class="content" style="display: none">
-        <div class="box box-default" id="box">
-          <div class="box-header with-border">
-            <h3 class="box-title" id="box-title">Blank Box</h3>
-          </div>
-          <div class="box-body" id="box-body">
-            The great content goes here
-          </div>
-          <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
       </section>
       <!-- /.content -->
     </div>

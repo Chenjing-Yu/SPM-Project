@@ -67,12 +67,12 @@ public class BookController extends HttpServlet {
 		boolean createRecord = shipment.createRecord();
 		if(createRecord) {
 		System.out.println("Your shipment record has been successfuly created"+quantity+message);
-		Mailer.sendMail(customerID, EmailContent);
+		//Mailer.sendMail(customerID, EmailContent);
 		PrintWriter out = response.getWriter();  
 		response.setContentType("text/html");  
 		out.println("<script type=\"text/javascript\">");  
 		out.println("alert('order success');");  
-		out.println("window.location = 'index.jsp';");
+		out.println("window.location.href = 'index.jsp';");
 		out.println("</script>");
 		}
 		else {rd = request.getRequestDispatcher("/error.jsp");}

@@ -157,28 +157,32 @@ public boolean insertUserShipment() {
 			int largeBoxes;
 			dbConnection conn;
     	 */
-        PreparedStatement ps = conn.prepare("INSERT INTO CustomerID,LargeBoxQuantity,MediumBoxQuantity,SmallBoxQuantity,"
-        		+ ",CustomerMessage,PreferredDeparture,EstimateArrival,BookingTime,Cost,ShipperID,Status"
-        		+ ",HBL"
-        		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?, ?,?)");
+        PreparedStatement ps = conn.prepare("INSERT INTO Shipping(CustomerID,Quantity,CustomerMessage"
+        		+ ",PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,Status,CollectorID"
+        		+ ",DeliveryAddress,HBL) "
+        		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?,?,?)");
         ps.setInt(1, 1);
-        ps.setInt(2, largeBoxes);
-        ps.setInt(3, medBoxes);
-        ps.setInt(4, smallBoxes );
-        ps.setString(5, message);
-        ps.setDate(6, departureDate);
+        ps.setInt(2, Integer.parseInt(quantity));
+        ps.setString(3, message);
+        ps.setDate(4, departureDate );
+        ps.setDate(5, arrivalDate );
         /*
          * one day has 86400000 milliseconds
          * multiply 5 for estimate of 5 days
          */
-        Date estimatedDate = new Date(new java.util.Date().getTime() + (86400000*5));
-        ps.setDate(7, estimatedDate);
-        ps.setTimestamp(8,new Timestamp(System.currentTimeMillis()));
-        ps.setBigDecimal(9, getCost());
+        //Date estimatedDate = new Date(new java.util.Date().getTime() + (86400000*5));
+        //ps.setDate(7, estimatedDate);
+        ps.setTimestamp(6,new Timestamp(System.currentTimeMillis()));
+        ps.setBigDecimal(7, getCost());
         //shipper ID
-        ps.setInt(10, 1);
+        ps.setInt(8, 1);
         //shipment status
-        ps.setInt(11,1);
+        ps.setInt(9,1);
+        //Collector ID
+        ps.setInt(10, 1);
+        //Delivery address
+        ps.setString(11, address);
+        //HBL
         ps.setString(12, "HBLGH234LJWEI224K42424243DKNKCKFF56");
         int i = ps.executeUpdate();
         

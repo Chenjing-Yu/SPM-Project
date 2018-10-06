@@ -12,6 +12,8 @@ import model.Authenticator;
 //import model.PrintWriter;
 import model.User;
 
+import javax.servlet.http.Cookie;
+
 
 
 public class LoginController extends HttpServlet {
