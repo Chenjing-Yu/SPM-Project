@@ -29,16 +29,16 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		RequestDispatcher rd = null;
-
+		
 		Authenticator authenticator = new Authenticator();
 		String result = authenticator.authenticate(username, password);
+		
 		if (result.equals("success")) {
-			rd = request.getRequestDispatcher("index.jsp");
-			User user = new User(username, password);
-			user.queryUser();
-			request.getSession().setAttribute("fullname", user.getFullname());
-			request.getSession().setAttribute("username", user.getUsername());
-			request.getSession().setAttribute("password", user.getPassword());
+			rd = request.getRequestDispatcher("book.jsp");		
+			String fullname = authenticator.getFullname();
+			request.getSession().setAttribute("username", username);
+			request.getSession().setAttribute("fullname", fullname);
+			
 		} else {
 			//rd = request.getRequestDispatcher("/error.jsp");
 			PrintWriter out = response.getWriter();  
