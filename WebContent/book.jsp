@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
   <meta charset="utf-8">
@@ -94,7 +95,7 @@
                 <!-- The user image in the navbar-->
                 <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Alexander Pierce</span>
+                <span class="hidden-xs"><c:out value='${sessionScope.fullname}'/></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">My profile</a></li>

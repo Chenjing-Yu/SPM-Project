@@ -121,7 +121,7 @@ public class User {
 		boolean res = false;
 		try {
 			String sql = "SELECT FullName, EmailAddress, Address, PhoneNUM, Password FROM customer where EmailAddress='"
-		+username+"' and Password='"+password;
+		+username+"' and Password='"+password + "'";
 			PreparedStatement ps = conn.prepare(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
