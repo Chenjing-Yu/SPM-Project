@@ -34,10 +34,15 @@ public class LoginController extends HttpServlet {
 		String result = authenticator.authenticate(username, password);
 		
 		if (result.equals("success")) {
-			rd = request.getRequestDispatcher("book.jsp");		
+			
 			String fullname = authenticator.getFullname();
+			String role = authenticator.getRole();
 			request.getSession().setAttribute("username", username);
 			request.getSession().setAttribute("fullname", fullname);
+			request.getSession().setAttribute("userRole", role);
+			if		(role.equalsIgnoreCase("customer")) {rd = request.getRequestDispatcher("book.jsp");		}
+			else if (role.equalsIgnoreCase("shipper")) {rd = request.getRequestDispatcher("orderlist.html");		}
+			else if (role.equalsIgnoreCase("collector")) {rd = request.getRequestDispatcher("book.jsp");		}
 			
 		} else {
 			//rd = request.getRequestDispatcher("/error.jsp");
