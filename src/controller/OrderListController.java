@@ -35,7 +35,7 @@ public class OrderListController extends HttpServlet {
 		System.out.println("doGet");
 		List<Shipment> orderList = orderManager.getOrders();
         request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
-        //request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
+        request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
 	}
 
 	/**
