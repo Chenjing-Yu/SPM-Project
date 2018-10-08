@@ -70,7 +70,7 @@ public class RegisterController extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
 		String password2 = request.getParameter("password2");
-		String EmailContent = "1";
+		String EmailContent = "Your account has been successfully created. Stay tuned for awesome stuff!!";
 		
 		User  newUser =new User(fullname,username,address,phone,password);
 		
