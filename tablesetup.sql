@@ -154,3 +154,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO Shipper
 VALUES (1, "susantoLogic@gmail.com", "susanto123");
+
+INSERT INTO Collector
+VALUES (1, "susanto0468111111@gmail.com", "susanto123");
