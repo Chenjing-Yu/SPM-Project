@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Shipping` (
   `BookingTime` TIMESTAMP NOT NULL,
   `Cost` DECIMAL(6,2) NOT NULL,
   `ShipperID` SMALLINT NULL,
-  `Status` ENUM('1', '2', '3', '4', '5', '6', '7', '8') NOT NULL,
+  `Status` ENUM('To be Approved', 'Request Accepted', 'Pick-up Scheduled', 'To be Shipped', 'Shipped', 'Arrived at Destination', 'Delivered', 'Delivery Delayed') NOT NULL DEFAULT 'To be Approved',
   `AcknowledgeTime` TIMESTAMP NULL,
   `DepartureDate` DATE NULL,
   `ShipperMessage` VARCHAR(100) NULL,

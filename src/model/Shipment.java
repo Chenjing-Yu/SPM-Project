@@ -22,15 +22,19 @@ public class Shipment {
 	/*
 	 * Table fields for Shipment table in database
 	 */
-	String quantity ;
-	String address ;
-	Date departureDate;
-	Date arrivalDate ;
-	String message;
 	String orderId;
-	String collectorID;
-	String shipmentID;
 	String customerID;
+	String bookingTime;
+	String quantity ;
+	Date departureDate;
+	Date arrivalDate;
+	String address ;//delivery address
+	String pickupAddress;
+	String message;
+	String collectorID;
+	String customerName;
+	String status;
+	String cost;
 	int medBoxes;
 	int smallBoxes;
 	int largeBoxes;
@@ -49,6 +53,8 @@ public class Shipment {
 		this.customerID = CustomerID;
 	}
 	
+	public Shipment() {}
+	
 	/**
 	 * 
 	 * Model class for Shipper table in database
@@ -63,17 +69,17 @@ public class Shipment {
 	public void setCollectorID(String collectorID) {
 		this.collectorID = collectorID;
 	}
-	public String getShipmentID() {
-		return shipmentID;
-	}
-	public void setShipmentID(String shipmentID) {
-		this.shipmentID = shipmentID;
-	}
 	public String getCustomerID() {
 		return customerID;
 	}
 	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	public int getMedBoxes() {
 		return medBoxes;
@@ -98,11 +104,18 @@ public class Shipment {
 	}
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
+		this.cost = String.valueOf(Integer.parseInt(quantity)*costOfSmallBox);
 	}
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPickupAddress() {
+		return address;
+	}
+	public void setPickupAddress(String address) {
 		this.address = address;
 	}
 	public Date getDepartureDate() {
@@ -128,6 +141,18 @@ public class Shipment {
 	}
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public void setBookingTime(String bookingTime) {
+		this.bookingTime = bookingTime;
+	}
+	public String getBookingTime() {
+		return this.bookingTime;
 	}
 	
 	public boolean createRecord() throws SQLException {
@@ -215,7 +240,7 @@ public boolean ackUserShipment() {
 			dbConnection conn;
     	 */
         PreparedStatement ps = conn.prepare("UPDATE Shipping(CustomerID,Quantity,CustomerMessage"
-        		+ ",PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,Status,CollectorID"
+        		+ ",PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,CollectorID"
         		+ ",DeliveryAddress,HBL) "
         		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?,?,?)");
         ps.setInt(1, 1);
@@ -233,14 +258,12 @@ public boolean ackUserShipment() {
         ps.setBigDecimal(7, getCost());
         //shipper ID
         ps.setInt(8, 1);
-        //shipment status
-        ps.setInt(9,1);
         //Collector ID
-        ps.setInt(10, 1);
+        ps.setInt(9, 1);
         //Delivery address
-        ps.setString(11, address);
+        ps.setString(10, address);
         //HBL
-        ps.setString(12, "HBLGH234LJWEI224K42424243DKNKCKFF56");
+        ps.setString(11, "HBLGH234LJWEI224K42424243DKNKCKFF56");
         int i = ps.executeUpdate();
         
         readDB();
