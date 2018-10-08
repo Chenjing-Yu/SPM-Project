@@ -14,8 +14,7 @@ public class Authenticator {
 		this.inputUsername = username;
 		
 		boolean validUser= false;
-		boolean validShipper = false;
-		boolean valideCollector = false;
+		
 		
 	
 		
@@ -26,15 +25,6 @@ public class Authenticator {
 		
 	}
 
-	private boolean checkDetailsOfCollector() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	private boolean checkDetailsOfShipper() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	public String getFullname() {
 		// TODO Auto-generated method stub
@@ -49,6 +39,22 @@ public class Authenticator {
 	private boolean checkDetailsOfUser() {
 		boolean userValid =false;
 		User newLoginUser = new User(inputUsername, inputPassword);
+		userValid = newLoginUser.queryUser();
+		if(userValid) {	}
+		return userValid;
+		
+	}
+	private boolean checkDetailsOfShipper() {
+		boolean userValid =false;
+		Shipper newLoginUser = new Shipper(inputUsername, inputPassword);
+		userValid = newLoginUser.queryUser();
+		if(userValid) {	}
+		return userValid;
+		
+	}
+	private boolean checkDetailsOfCollector() {
+		boolean userValid =false;
+		Collector newLoginUser = new Collector(inputUsername, inputPassword);
 		userValid = newLoginUser.queryUser();
 		if(userValid) {	}
 		return userValid;

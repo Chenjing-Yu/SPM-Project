@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Shipper {
+public class Collector {
 
 	
 	public String username;
@@ -16,7 +16,7 @@ public class Shipper {
  
 	
  
-	public Shipper(String fullname, String username2, String address, String phone, String password2) {
+	public Collector(String fullname, String username2, String address, String phone, String password2) {
 		// TODO Auto-generated constructor stub
 	
 		this.username = username2;
@@ -28,7 +28,7 @@ public class Shipper {
 	}
 
 	
-	public Shipper(String username2, String password2) {
+	public Collector(String username2, String password2) {
 		// TODO Auto-generated constructor stub
 		this.username = username2;
 		this.password = password2;
