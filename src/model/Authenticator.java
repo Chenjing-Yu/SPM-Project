@@ -13,14 +13,15 @@ public class Authenticator {
 		this.inputPassword = password;
 		this.inputUsername = username;
 		
+	
 		boolean validUser= false;
 		
 		
 	
 		
-		if(validUser = checkDetailsOfShipper()) {this.role ="shipper";return success;}		
-		else if(validUser = checkDetailsOfCollector()) {this.role ="collector";return success;}
-		else if(validUser = checkDetailsOfUser()) {this.role ="customer";return success;}
+		if(validUser == checkDetailsOfShipper()) {this.role ="shipper";return success;}		
+		else if(validUser == checkDetailsOfCollector()) {this.role ="collector";return success;}
+		else if(validUser == checkDetailsOfUser()) {this.role ="customer";return success;}
 		else {return result;}
 		
 	}
