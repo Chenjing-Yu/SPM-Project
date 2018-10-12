@@ -2,7 +2,10 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Authenticator;
 //import model.PrintWriter;
 import model.User;
+import utils.Mailer;
 
 import javax.servlet.http.Cookie;
 
@@ -18,11 +22,18 @@ import javax.servlet.http.Cookie;
 
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private String host;
+    private String port;
 	public LoginController() {
 		super();
 	}
-
+    public void init() {
+        // reads SMTP server setting from web.xml file
+        ServletContext context = getServletContext();
+        host = context.getInitParameter("host");
+        port = context.getInitParameter("port");
+      
+    }
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -37,6 +48,17 @@ public class LoginController extends HttpServlet {
 		if (result.equals("success")) {
 			System.out.println("authentication success");
 			String fullname = authenticator.getFullname();
+			String emailid = username;
+			String content = "Hi, you have successfully logged in. If you didnot do login please contact customer care.";
+			try {
+				Mailer.sendEmail(host, port, emailid, content);
+			} catch (AddressException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println(fullname);
 			String role = authenticator.getRole();
 			request.getSession().setAttribute("loginusername", username);

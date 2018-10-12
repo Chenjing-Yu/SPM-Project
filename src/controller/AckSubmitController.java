@@ -3,12 +3,18 @@ package controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Shipment;
+import utils.Mailer;
 
 /**
  * Servlet implementation class AckSubmitController
@@ -16,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AckSubmitController")
 public class AckSubmitController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String host;
+    private String port;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -24,6 +32,14 @@ public class AckSubmitController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    public void init() {
+        // reads SMTP server setting from web.xml file
+        ServletContext context = getServletContext();
+        host = context.getInitParameter("host");
+        port = context.getInitParameter("port");
+       
+    }
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,6 +65,19 @@ public class AckSubmitController extends HttpServlet {
 			datetime = new java.sql.Timestamp(utilDate.getTime());
 		} catch (Exception e) {
 			rd = request.getRequestDispatcher("/error.jsp");
+		}
+		String orderId = request.getParameter("orderId");
+		Shipment order = new Shipment(orderId);
+		String emailid = order.getOrderEmail();
+		String content = "Hi, your order has been acknowledeged.";
+		try {
+			Mailer.sendEmail(host, port, emailid, content);
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
