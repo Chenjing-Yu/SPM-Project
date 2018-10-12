@@ -286,6 +286,7 @@ public void updateStatus(String status, String orderId) {
 		PreparedStatement ps = conn.prepare(sql);
 		ps.setString(1, status);
 		ps.setInt(2, Integer.parseInt(orderId));
+		int result = ps.executeUpdate();
 	} catch (SQLException ex) {
         ex.printStackTrace();
     }
