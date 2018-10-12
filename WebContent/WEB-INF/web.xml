@@ -35,6 +35,18 @@
     <servlet-name>UpdateStatusController</servlet-name>
     <servlet-class>controller.UpdateStatusController</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>AckController</display-name>
+    <servlet-name>AckController</servlet-name>
+    <servlet-class>controller.AckController</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>AckSubmitController</display-name>
+    <servlet-name>AckSubmitController</servlet-name>
+    <servlet-class>controller.AckSubmitController</servlet-class>
+  </servlet>
  
   <context-param>
     <param-name>host</param-name>

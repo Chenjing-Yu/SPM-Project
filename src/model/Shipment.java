@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Shipment {
@@ -32,9 +33,10 @@ public class Shipment {
 	String pickupAddress;
 	String message;
 	String collectorID;
-	String customerName;
+	String customerName; //Fullname
 	String status;
 	String cost;
+	String hblNumber;
 	int medBoxes;
 	int smallBoxes;
 	int largeBoxes;
@@ -55,14 +57,6 @@ public class Shipment {
 	
 	public Shipment(String orderId) {
 		this.orderId = orderId;
-		String sql = "SELECT FROM shipping WHERE ShippingID=?";
-		try {
-			PreparedStatement ps = conn.prepare(sql);
-			ps.setInt(1, Integer.parseInt(orderId));
-			ResultSet result = ps.executeQuery();
-		} catch (SQLException ex) {
-	        ex.printStackTrace();
-	    }
 	}
 	
 	public Shipment() {}
@@ -73,7 +67,32 @@ public class Shipment {
 	 * 
 	 * @return
 	 */
-	
+	public void readOrder() {
+		String sql = "SELECT * FROM shipping NATUAL JOIN customer WHERE ShippingID=?";
+		try {
+			PreparedStatement ps = conn.prepare(sql);
+			ps.setInt(1, Integer.parseInt(this.orderId));
+			ResultSet result = ps.executeQuery();
+			if (result.next()) {
+                this.customerID = String.valueOf(result.getInt("CustomerID"));
+                this.customerName = String.valueOf(result.getString("FullName"));
+                this.quantity = String.valueOf(result.getInt("Quantity"));
+                this.cost = String.valueOf(result.getInt("Cost"));
+                this.status = result.getString("Status");
+                this.message = result.getString("ShipperMessage");
+                this.hblNumber = result.getString("HBL");
+                this.pickupAddress = result.getString("Address");
+                //SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                //Timestamp bookTime = result.getTimestamp("BookingTime");
+                //this.bookingTime = f.format(bookTime);
+            }
+			else {
+				System.out.println("The order is not found!");
+			}
+		} catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	}
 	
 	public String getCollectorID() {
 		return collectorID;
@@ -166,6 +185,12 @@ public class Shipment {
 	public String getBookingTime() {
 		return this.bookingTime;
 	}
+	public String getHblNumber() {
+		return hblNumber;
+	}
+	public void setHblNumber(String hbl) {
+		this.hblNumber = hbl;
+	}
 	
 	public boolean createRecord() throws SQLException {
 		
@@ -253,53 +278,13 @@ public boolean insertUserShipment() {
     return false;
 }
 
-public boolean ackUserShipment() {
-    
+public boolean ackUserShipment(Timestamp pickuptime) {
     try {
-    	/*
-    	 * 	String quantity ;
-			String address ;
-			String departureDate;
-			String arrivalDate ;
-			String message;
-			String orderId;
-			String collectorID;
-			String shipmentID;
-			String customerID;
-			int medBoxes;
-			int smallBoxes;
-			int largeBoxes;
-			dbConnection conn;
-    	 */
-        PreparedStatement ps = conn.prepare("UPDATE Shipping(CustomerID,Quantity,CustomerMessage"
-        		+ ",PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,CollectorID"
-        		+ ",DeliveryAddress,HBL) "
-        		+ "VALUES ( ?, ?, ?,?, ?, ?,?, ?, ?,?,?,?)");
-        ps.setInt(1, 1);
-        ps.setInt(2, Integer.parseInt(quantity));
-        ps.setString(3, message);
-        ps.setDate(4, departureDate );
-        ps.setDate(5, arrivalDate );
-        /*
-         * one day has 86400000 milliseconds
-         * multiply 5 for estimate of 5 days
-         */
-        //Date estimatedDate = new Date(new java.util.Date().getTime() + (86400000*5));
-        //ps.setDate(7, estimatedDate);
-        ps.setTimestamp(6,new Timestamp(System.currentTimeMillis()));
-        ps.setBigDecimal(7, getCost());
-        //shipper ID
-        ps.setInt(8, 1);
-        //Collector ID
-        ps.setInt(9, 1);
-        //Delivery address
-        ps.setString(10, address);
-        //HBL
-        ps.setString(11, "HBLGH234LJWEI224K42424243DKNKCKFF56");
+        PreparedStatement ps = conn.prepare("UPDATE shipping SET PickupTime=? WHERE ShippingID=?");
+        ps.setTimestamp(1, pickuptime );
+        ps.setInt(2, Integer.parseInt(this.orderId));
         int i = ps.executeUpdate();
-        
-        readDB();
-      if(i == 1) {
+      if(i > 0) {
         return true;
       }
     } catch (SQLException ex) {

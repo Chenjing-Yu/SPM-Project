@@ -118,18 +118,19 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form role="form">
+          <form action="AckSubmitController" method="post">
             <div class="form-group">
               <label>Status</label>
               <select class="form-control" name="status">
-                <option>To be Approved</option>
-                <option>Request Accepted</option>
-                <option>Pick-up Scheduled</option>
-                <option>To be Shipped</option>
-                <option>Shipped</option>
-                <option>Arrived at Destination</option>
-                <option>Delivered</option>
-                <option>Delivery Delayed</option>
+                <option value=${order.status}>${order.status}</option>
+                <option value="To be Approved">To be Approved</option>
+                <option value="Request Accepted">Request Accepted</option>
+                <option value="Pick-up Scheduled">Pick-up Scheduled</option>
+                <option value="To be Shipped">To be Shipped</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Arrived at Destination">Arrived at Destination</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Delivery Delayed">Delivery Delayed</option>
               </select>
             </div>
             <div class="form-group">
@@ -148,24 +149,25 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="time" name="pickuptime" class="form-control pull-right" id="datepicker1" required>
+                <input type="time" name="pickuptime" class="form-control pull-right" id="datepicker2" required>
               </div>
               <!-- /.input group -->
             </div>
             <!-- text input -->
             <div class="form-group">
               <label>Cost</label>
-              <input type="number" name="cost" class="form-control" placeholder="$105" disabled>
+              <input type="number" name="cost" class="form-control" value=${order.cost} disabled>
             </div>
             <div class="form-group">
               <label>HBL number</label>
-              <input type="text" name="HBL" class="form-control" placeholder="123456" disabled>
+              <input type="text" name="HBL" class="form-control" value=${order.hblNumber} disabled>
             </div>
             <div class="row row-check">
                 <div class="col-xs-9">
                 </div>
         <!-- /.col -->
                 <div class="col-xs-3">
+                	<input type="hidden" id="orderId" name="orderId" value=${order.orderId}>
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
                 </div>
         <!-- /.col -->

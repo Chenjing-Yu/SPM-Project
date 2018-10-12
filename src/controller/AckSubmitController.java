@@ -64,10 +64,14 @@ public class AckSubmitController extends HttpServlet {
 			java.util.Date utilDate = sdf.parse(pickupdate+" "+pickuptime);
 			datetime = new java.sql.Timestamp(utilDate.getTime());
 		} catch (Exception e) {
+			System.out.println("Fail to parse the date and time.");
 			rd = request.getRequestDispatcher("/error.jsp");
 		}
 		String orderId = request.getParameter("orderId");
+		System.out.println("AckSubmitController: orderId="+orderId);
 		Shipment order = new Shipment(orderId);
+		order.ackUserShipment(datetime);
+		
 		String emailid = order.getOrderEmail();
 		String content = "Hi, your order has been acknowledeged.";
 		try {
@@ -79,6 +83,8 @@ public class AckSubmitController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
 	}
 
 }

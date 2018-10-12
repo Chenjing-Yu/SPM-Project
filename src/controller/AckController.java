@@ -44,6 +44,7 @@ public class AckController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String orderId = request.getParameter("orderId");
 		Shipment order = new Shipment(orderId);
+		order.readOrder();
 		request.setAttribute("order", order);
 		request.getRequestDispatcher("/ackbook.jsp").forward(request, response);
 	}

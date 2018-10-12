@@ -139,7 +139,7 @@
                   <form action="UpdateStatusController" method ="post">
                     <div class="form-group">
                       <select class="form-control" name="status">
-                        <option>${order.status}</option>
+                        <option value=${order.status}>${order.status}</option>
                         <option value="To be Approved">To be Approved</option>
                         <option value="Request Accepted">Request Accepted</option>
                         <option value="Pick-up Scheduled">Pick-up Scheduled</option>
@@ -155,10 +155,13 @@
                     </form>
                   </td>
                   <td>${order.cost}</td>
-                  <td><form action="AckController" method="post">
+                  <td>
+                  <c:if test="${order.status == 'To be Approved'}">
+                  <form action="AckController" method="post">
                   <input type="hidden" id="orderId-a" name="orderId" value=${order.orderId}>
                   	<button type="submit" class="btn btn-primary btn-block btn-flat">Acknowledge</button>
                   </form>
+                  </c:if>
                   <form action="OrderDetailController" method="post">
                   <input type="hidden" id="orderId-d" name="orderId" value=${order.orderId}>
                   	<button type="submit" class="btn btn-primary btn-block btn-flat">Details</button>
