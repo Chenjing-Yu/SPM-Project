@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.OrderList;
 import model.Shipment;
+import utils.Mailer;
 
 /**
  * Servlet implementation class UpdateStatusController
@@ -21,6 +25,8 @@ import model.Shipment;
 public class UpdateStatusController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderList orderManager;
+	private String host;
+    private String port;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -29,6 +35,13 @@ public class UpdateStatusController extends HttpServlet {
         super();
         orderManager = new OrderList();
         // TODO Auto-generated constructor stub
+    }
+    public void init() {
+        // reads SMTP server setting from web.xml file
+        ServletContext context = getServletContext();
+        host = context.getInitParameter("host");
+        port = context.getInitParameter("port");
+      
     }
 
 	/**
@@ -50,6 +63,17 @@ public class UpdateStatusController extends HttpServlet {
 		System.out.println("status:"+status+";orderId:"+orderId);
 		Shipment order = new Shipment(orderId);
 		order.updateStatus(status, orderId);
+		String emailid = order.getOrderEmail();
+		String content = "Hi, we have update! your order status:"+status;
+		try {
+			Mailer.sendEmail(host, port, emailid, content);
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		List<Shipment> orderList = orderManager.getOrders();
         request.setAttribute("orders", orderList);
