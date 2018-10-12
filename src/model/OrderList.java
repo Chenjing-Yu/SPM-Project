@@ -60,6 +60,7 @@ public class OrderList {
 	                order.setPickupAddress(resultSet.getString("Address"));
 	                order.setStatus(resultSet.getString("Status"));
 	                orderlist.add(order);
+	                System.out.println(order.departureDate);
 	            }
 	            System.out.println("Successfully get the orders:" + orderlist.get(0).customerName);
 	        } catch (SQLException ex) {

@@ -29,6 +29,12 @@
     <servlet-name>OrderListController</servlet-name>
     <servlet-class>controller.OrderListController</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>UpdateStatusController</display-name>
+    <servlet-name>UpdateStatusController</servlet-name>
+    <servlet-class>controller.UpdateStatusController</servlet-class>
+  </servlet>
  
   <context-param>
     <param-name>host</param-name>

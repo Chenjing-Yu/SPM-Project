@@ -33,9 +33,6 @@ public class UpdateStatusController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String status = request.getParameter("status");
-		String orderId = request.getParameter("orderId");
-		Shipment order = new Shipment(orderId);
 	}
 
 	/**
@@ -43,7 +40,10 @@ public class UpdateStatusController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String status = request.getParameter("status");
+		String orderId = request.getParameter("orderId");
+		Shipment order = new Shipment(orderId);
+		System.out.println("updateStatusController:doPost");
 	}
 
 }

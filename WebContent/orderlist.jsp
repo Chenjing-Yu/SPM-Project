@@ -130,30 +130,31 @@
                 <tr>
                   <td>${order.orderId}</td>
                   <td>${order.customerName}</td>
-                  <td>${product.bookingTime}</td>
-                  <td>${product.quantity}</td>
-                  <td>${product.departureDate}</td>
-                  <td>${product.arrivalDate}</td>
-                  <td>${product.pickupAddress}</td>
+                  <td>${order.bookingTime}</td>
+                  <td>${order.quantity}</td>
+                  <td>${order.departureDate}</td>
+                  <td>${order.arrivalDate}</td>
+                  <td>${order.pickupAddress}</td>
                   <td>
                   <form action="UpdateStatusController">
                     <div class="form-group">
                       <select class="form-control" name="status">
-                        <option>${product.status}</option>
-                        <option>To be Approved</option>
-                        <option>Request Accepted</option>
-                        <option>Pick-up Scheduled</option>
-                        <option>To be Shipped</option>
-                        <option>Shipped</option>
-                        <option>Arrived at Destination</option>
-                        <option>Delivered</option>
-                        <option>Delivery Delayed</option>
+                        <option>${order.status}</option>
+                        <option value="To be Approved">To be Approved</option>
+                        <option value="Request Accepted">Request Accepted</option>
+                        <option value="Pick-up Scheduled">Pick-up Scheduled</option>
+                        <option value="To be Shipped">To be Shipped</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Arrived at Destination">Arrived at Destination</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Delivery Delayed">Delivery Delayed</option>
                       </select>
+                      <input type="hidden" id="orderId" name="orderId" value=${order.orderId}>
                       <button type="submit" class="btn btn-primary btn-block btn-flat">Update</button>
                     </div>
                     </form>
                   </td>
-                  <td>${product.cost}</td>
+                  <td>${order.cost}</td>
                   <td><form action="AckController">
                   	<button type="submit" class="btn btn-primary btn-block btn-flat">Acknowledge</button>
                   </form>
@@ -162,41 +163,6 @@
                   </form></td>
                 </tr>
                 </c:forEach>
-                <tr>
-                  <td>00000001</td>
-                  <td>Alenxander</td>
-                  <td>15/09/2018</td>
-                  <td>3</td>
-                  <td>16/09/2018</td>
-                  <td>15/10/2018</td>
-                  <td>XXX 444 Lygon Str. Carlton</td>
-                  <td>
-                  <form action="UpdateStatusController">
-                    <div class="form-group">
-                      <select class="form-control" name="status">
-                        <option>Current</option>
-                        <option>To be Approved</option>
-                        <option>Request Accepted</option>
-                        <option>Pick-up Scheduled</option>
-                        <option>To be Shipped</option>
-                        <option>Shipped</option>
-                        <option>Arrived at Destination</option>
-                        <option>Delivered</option>
-                        <option>Delivery Delayed</option>
-                      </select>
-                      <button type="submit" class="btn btn-primary btn-block btn-flat">Update</button>
-                    </div>
-                    </form>
-                  </td>
-                  <td>$105</td>
-                  <td>
-                  <form action="AckController">
-                  	<button type="submit" class="btn btn-primary btn-block btn-flat">Acknowledge</button>
-                  </form>
-                  <form action="OrderDetailController">
-                  	<button type="submit" class="btn btn-primary btn-block btn-flat">Details</button>
-                  </form></td>
-                </tr>
               </table>
              
             </div>
