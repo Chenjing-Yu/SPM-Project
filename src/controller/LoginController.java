@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 			request.getSession().setAttribute("fullname", fullname);
 			request.getSession().setAttribute("userRole", role);
 			if		(role.equalsIgnoreCase("customer")) {rd = request.getRequestDispatcher("book.jsp");		}
-			else if (role.equalsIgnoreCase("shipper")) {rd = request.getRequestDispatcher("orderlist.html");		}
+			else if (role.equalsIgnoreCase("shipper")) {rd = request.getRequestDispatcher("OrderListController");		}
 			else if (role.equalsIgnoreCase("collector")) {rd = request.getRequestDispatcher("book.jsp");		}
 			rd.forward(request, response);
 			

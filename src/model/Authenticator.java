@@ -19,9 +19,9 @@ public class Authenticator {
 		
 	
 		
-		if(validUser == checkDetailsOfShipper()) {this.role ="shipper";return success;}		
-		else if(validUser == checkDetailsOfCollector()) {this.role ="collector";return success;}
-		else if(validUser == checkDetailsOfUser()) {this.role ="customer";return success;}
+		if( checkDetailsOfShipper()) {validUser =true; this.role ="shipper";return success;}		
+		else if( checkDetailsOfCollector()) {validUser =true; this.role ="collector";return success;}
+		else if( checkDetailsOfUser()) {validUser =true; this.role ="customer";System.out.println("we are herwe");return success;}
 		else {return result;}
 		
 	}
@@ -41,7 +41,8 @@ public class Authenticator {
 		boolean userValid =false;
 		User newLoginUser = new User(inputUsername, inputPassword);
 		userValid = newLoginUser.queryUser();
-		if(userValid) {	}
+		System.out.println("query in authenticator"+userValid);
+		
 		return userValid;
 		
 	}
@@ -49,7 +50,7 @@ public class Authenticator {
 		boolean userValid =false;
 		Shipper newLoginUser = new Shipper(inputUsername, inputPassword);
 		userValid = newLoginUser.queryUser();
-		if(userValid) {	}
+		
 		return userValid;
 		
 	}
@@ -57,7 +58,7 @@ public class Authenticator {
 		boolean userValid =false;
 		Collector newLoginUser = new Collector(inputUsername, inputPassword);
 		userValid = newLoginUser.queryUser();
-		if(userValid) {	}
+		
 		return userValid;
 		
 	}
