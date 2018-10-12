@@ -142,6 +142,32 @@ public class User {
 		return res;
 	}
 	
+	public boolean updateUser(String email, String fullname, String phone, String pwd, String address){
+		boolean res = false;
+		try {
+			String sql = "UPDATE customer SET FullName=?, Address=?, PhoneNUM=?, Password=? WHERE EmailAddress=?";
+			System.out.println(sql);
+			PreparedStatement ps = conn.prepare(sql);
+			ps.setString(1, fullname);
+			ps.setString(2, address);
+			ps.setString(3, phone);
+			ps.setString(4, pwd);
+			ps.setString(5, email);
+			
+			int rs = ps.executeUpdate();
+			if(rs > 0){
+				res = true;
+			}
+			else {
+				//user doesn't exist
+			}
+			//conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				}
+		return res;
+	}
+	
 	private void readDB() throws SQLException {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("static-access")

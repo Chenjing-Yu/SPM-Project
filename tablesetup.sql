@@ -157,3 +157,5 @@ VALUES (1, "susantoLogic@gmail.com", "susanto123");
 
 INSERT INTO Collector
 VALUES (1, "susanto0468111111@gmail.com", "susanto123");
+
+SET SQL_SAFE_UPDATES = 0;

@@ -55,6 +55,14 @@ public class Shipment {
 	
 	public Shipment(String orderId) {
 		this.orderId = orderId;
+		String sql = "SELECT FROM shipping WHERE ShippingID=?";
+		try {
+			PreparedStatement ps = conn.prepare(sql);
+			ps.setInt(1, Integer.parseInt(orderId));
+			ResultSet result = ps.executeQuery();
+		} catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
 	}
 	
 	public Shipment() {}

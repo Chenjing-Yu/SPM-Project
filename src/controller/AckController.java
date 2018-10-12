@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Shipment;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -39,6 +42,10 @@ public class AckController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String orderId = request.getParameter("orderId");
+		Shipment order = new Shipment(orderId);
+		request.setAttribute("order", order);
+		request.getRequestDispatcher("/ackbook.jsp").forward(request, response);
 	}
 
 }
