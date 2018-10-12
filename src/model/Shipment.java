@@ -53,6 +53,10 @@ public class Shipment {
 		this.customerID = CustomerID;
 	}
 	
+	public Shipment(String orderId) {
+		this.orderId = orderId;
+	}
+	
 	public Shipment() {}
 	
 	/**
@@ -274,6 +278,17 @@ public boolean ackUserShipment() {
         ex.printStackTrace();
     }
     return false;
+}
+
+public void updateStatus(String status, String orderId) {
+	String sql = "UPDATE shipping SET Status=? WHERE ShippingID=?";
+	try {
+		PreparedStatement ps = conn.prepare(sql);
+		ps.setString(1, status);
+		ps.setInt(2, Integer.parseInt(orderId));
+	} catch (SQLException ex) {
+        ex.printStackTrace();
+    }
 }
 
 private void readDB() throws SQLException {

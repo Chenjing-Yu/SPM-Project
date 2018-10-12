@@ -28,13 +28,14 @@ public class LoginController extends HttpServlet {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		System.out.println("username:"+username+"; password:"+password);
 		RequestDispatcher rd = null;
 		
 		Authenticator authenticator = new Authenticator();
 		String result = authenticator.authenticate(username, password);
 		
 		if (result.equals("success")) {
-			
+			System.out.println("authentication success");
 			String fullname = authenticator.getFullname();
 			String role = authenticator.getRole();
 			request.getSession().setAttribute("username", username);
@@ -43,9 +44,10 @@ public class LoginController extends HttpServlet {
 			if		(role.equalsIgnoreCase("customer")) {rd = request.getRequestDispatcher("book.jsp");		}
 			else if (role.equalsIgnoreCase("shipper")) {rd = request.getRequestDispatcher("orderlist.html");		}
 			else if (role.equalsIgnoreCase("collector")) {rd = request.getRequestDispatcher("book.jsp");		}
+			rd.forward(request, response);
 			
 		} else {
-			//rd = request.getRequestDispatcher("/error.jsp");
+			//rd = request.getRequestDispatcher("/index.jsp");
 			PrintWriter out = response.getWriter();  
 			response.setContentType("text/html");  
 			out.println("<script type=\"text/javascript\">");  
@@ -53,7 +55,6 @@ public class LoginController extends HttpServlet {
 			out.println("window.location.href = 'index.jsp';");
 			out.println("</script>");
 		}
-		rd.forward(request, response);
 	}
 
 }

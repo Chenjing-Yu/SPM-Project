@@ -119,14 +119,14 @@ public class Collector {
 	public boolean queryUser(){
 		boolean res = false;
 		try {
-			String sql = "SELECT FullName, EmailAddress, Address, PhoneNUM, Password FROM customer where EmailAddress='"
+			String sql = "SELECT CollectorID, EmailAddress, Password FROM Collector where EmailAddress='"
 		+username+"' and Password='"+password + "'";
 			PreparedStatement ps = conn.prepare(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
-				fullname = rs.getString(1);
-				address = rs.getString(3);
-				phone = rs.getString(4);
+				fullname = "Alexendra";//rs.getString(1);
+				address = "123 Queen Street, Jakarta";
+				phone = "0882222223";
 				res = true;
 			}
 			else {

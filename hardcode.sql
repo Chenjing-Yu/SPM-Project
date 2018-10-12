@@ -72,7 +72,7 @@ FROM Shipping JOIN Customer;
 
 -- Or if you want a combination of the colomuns
 SELECT ShippingID, Fullname, BookingTime, Quantity, PreferredDeparture, PreferredArrival, PickupAddress, Status, Cost
-FROM Shipping JOIN Customer;
+FROM Shipping NATURAL JOIN Customer;
 
 -- Customer order detail, just a combination, if need individual attributes, just break down
 SELECT BookingTime, AcknowledgeTime, Quantity, DeliveryAddress, PickupAddress, PreferredDeparture, PreferredArrival, Cost, Status, CustomerMessage

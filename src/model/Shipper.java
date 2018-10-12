@@ -119,14 +119,14 @@ public class Shipper {
 	public boolean queryUser(){
 		boolean res = false;
 		try {
-			String sql = "SELECT FullName, EmailAddress, Address, PhoneNUM, Password FROM customer where EmailAddress='"
+			String sql = "SELECT ShipperId, EmailAddress, Password FROM shipper where EmailAddress='"
 		+username+"' and Password='"+password + "'";
 			PreparedStatement ps = conn.prepare(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
-				fullname = rs.getString(1);
-				address = rs.getString(3);
-				phone = rs.getString(4);
+				fullname = "Susanto";//rs.getString(1);
+				address = "123 Berry Street, Melbourne";
+				phone = "0452222223";
 				res = true;
 			}
 			else {
