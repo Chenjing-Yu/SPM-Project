@@ -90,7 +90,7 @@
                 <!-- The user image in the navbar-->
                 <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">><c:out value='${sessionScope.fullname}'/></span>
+                <span class="hidden-xs"><c:out value='${sessionScope.loginfullname}'/></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">My profile</a></li>
@@ -136,7 +136,7 @@
                   <td>${order.arrivalDate}</td>
                   <td>${order.pickupAddress}</td>
                   <td>
-                  <form action="UpdateStatusController">
+                  <form action="UpdateStatusController" method ="post">
                     <div class="form-group">
                       <select class="form-control" name="status">
                         <option>${order.status}</option>

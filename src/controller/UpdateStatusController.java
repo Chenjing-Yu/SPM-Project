@@ -43,7 +43,7 @@ public class UpdateStatusController extends HttpServlet {
 		String status = request.getParameter("status");
 		String orderId = request.getParameter("orderId");
 		Shipment order = new Shipment(orderId);
-		System.out.println("updateStatusController:doPost");
+		System.out.println("updateStatusController:doPost"+orderId);
 	}
 
 }
