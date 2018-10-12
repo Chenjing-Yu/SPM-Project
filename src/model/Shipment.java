@@ -166,7 +166,27 @@ public class Shipment {
 	}
 	public BigDecimal  getCost() {	return new BigDecimal( Integer.parseInt(quantity)*costOfSmallBox);	}
 	
-	
+public String getOrderEmail() {
+	if (this.orderId.isEmpty()) {
+		System.out.println("no information about the customer");
+		return "";
+	}
+	try {
+		String sql = "SELECT EmailAddress FROM customer NATUAL JOIN shipping WHERE ShippingID=?";
+		PreparedStatement ps = conn.prepare(sql);
+		ps.setInt(1, Integer.parseInt(orderId));
+		ResultSet rs = ps.executeQuery();
+		if (rs.next()) {
+			return rs.getString(1);
+		}
+		else {
+			return "";
+		}
+	} catch (SQLException e) {
+		//
+	}
+	return null;
+}
 
 public boolean insertUserShipment() {
     
