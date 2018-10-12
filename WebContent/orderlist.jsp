@@ -155,10 +155,12 @@
                     </form>
                   </td>
                   <td>${order.cost}</td>
-                  <td><form action="AckController">
+                  <td><form action="AckController" method="post">
+                  <input type="hidden" id="orderId-a" name="orderId" value=${order.orderId}>
                   	<button type="submit" class="btn btn-primary btn-block btn-flat">Acknowledge</button>
                   </form>
-                  <form action="OrderDetailController">
+                  <form action="OrderDetailController" method="post">
+                  <input type="hidden" id="orderId-d" name="orderId" value=${order.orderId}>
                   	<button type="submit" class="btn btn-primary btn-block btn-flat">Details</button>
                   </form></td>
                 </tr>
