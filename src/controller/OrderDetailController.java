@@ -32,12 +32,12 @@ public class OrderDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("OrderDetailController: doGet");
 		String orderId = request.getParameter("orderId");
-		Shipment order = new Shipment();
+		System.out.println("OrderDetailController: doGet=" + orderId);
+		Shipment order = new Shipment(orderId);
 		order.readOrder(); // get information of the order
         request.setAttribute("order", order); // Will be available as ${order} in JSP
-        request.getRequestDispatcher("/details.jsp").forward(request, response);
+        request.getRequestDispatcher("details.jsp").forward(request, response);
 	}
 
 	/**

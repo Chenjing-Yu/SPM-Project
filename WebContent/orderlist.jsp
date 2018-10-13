@@ -162,7 +162,7 @@
                   	<button type="submit" class="btn btn-primary btn-block btn-flat">Acknowledge</button>
                   </form>
                   </c:if>
-                  <form action="OrderDetailController" method="post">
+                  <form action="OrderDetailController" method="get">
                   <input type="hidden" id="orderId-d" name="orderId" value=${order.orderId}>
                   	<button type="submit" class="btn btn-primary btn-block btn-flat">Details</button>
                   </form></td>
