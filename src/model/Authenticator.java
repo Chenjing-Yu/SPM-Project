@@ -2,7 +2,7 @@ package model;
 
 public class Authenticator {
 
-	
+	String id;
 	String role;
 	String inputUsername;
 	String inputPassword;
@@ -37,12 +37,17 @@ public class Authenticator {
 		return role;
 	}
 	
+	public String getId() {
+		return id;
+	}
+	
 	private boolean checkDetailsOfUser() {
 		boolean userValid =false;
 		User newLoginUser = new User(inputUsername, inputPassword);
 		userValid = newLoginUser.queryUser();
 		System.out.println("query in authenticator"+userValid);
 		this.fullname = newLoginUser.getFullname();
+		this.id = newLoginUser.getUserId();
 		return userValid;
 		
 	}
@@ -51,6 +56,7 @@ public class Authenticator {
 		Shipper newLoginUser = new Shipper(inputUsername, inputPassword);
 		userValid = newLoginUser.queryUser();
 		this.fullname = newLoginUser.getFullname();
+		this.id = newLoginUser.getShipperId();
 		return userValid;
 		
 	}
@@ -59,6 +65,7 @@ public class Authenticator {
 		Collector newLoginUser = new Collector(inputUsername, inputPassword);
 		userValid = newLoginUser.queryUser();
 		this.fullname = newLoginUser.getFullname();
+		this.id = newLoginUser.getCollectorId();
 		return userValid;
 		
 	}

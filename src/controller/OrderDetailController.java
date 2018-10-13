@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Shipment;
 
 /**
  * Servlet implementation class OrderDetailController
@@ -28,6 +32,12 @@ public class OrderDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("OrderDetailController: doGet");
+		String orderId = request.getParameter("orderId");
+		Shipment order = new Shipment();
+		order.readOrder(); // get information of the order
+        request.setAttribute("order", order); // Will be available as ${order} in JSP
+        request.getRequestDispatcher("/details.jsp").forward(request, response);
 	}
 
 	/**
@@ -35,7 +45,7 @@ public class OrderDetailController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }

@@ -124,16 +124,18 @@
             <!-- text input -->
             <div class="form-group">
               <label>Number of Boxes</label>
-              <input type="number" name ="quantity"class="form-control" placeholder="1, 2, 3..." required value="quantity">
+              <input type="number" name ="quantity" class="form-control" placeholder="1, 2, 3..." required>
             </div>
             <div class="form-group">
               <label>Recieving Address</label>
-              <input type="text" name ="address"class="form-control" placeholder="Address in Jakarta" required value="address">
+              <input type="text" name ="address" class="form-control" placeholder="Address in Jakarta" required>
             </div>
+            <!--
             <div class="form-group">
               <label>Pick-up Address</label>
               <input type="text" name =""class="form-control" placeholder="Your address in Melbourne" disabled>
             </div>
+            -->
             <!-- select -->
             <!-- Date range -->
             <div class="form-group" style="display: none">
@@ -142,7 +144,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" class="form-control pull-right" id="reservation" required value="departureArrivalDates">
+                <input type="text" class="form-control pull-right" id="reservation" name="departureArrivalDate" required>
               </div>
             </div>
             <!-- Date -->
@@ -152,7 +154,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="date" name ="departureDate" class="form-control pull-right" id="datepicker1" required value="departureDate">
+                <input type="date" name ="departureDate" class="form-control pull-right" id="datepicker1" required>
               </div>
               <!-- /.input group -->
             </div>
@@ -164,7 +166,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="date" name ="arrivalDate" class="form-control pull-right" id="datepicker2" required value = "arrivalDate">
+                <input type="date" name ="arrivalDate" class="form-control pull-right" id="datepicker2" required>
               </div>
               <!-- /.input group -->
             </div>
@@ -172,17 +174,16 @@
             <!-- textarea -->
             <div class="form-group">
               <label>Message for the shipper</label>
-              <textarea class="form-control"name ="message" id="message" rows="3" placeholder="Enter ..."></textarea>
+              <textarea class="form-control" name ="message" id="message" rows="3" placeholder="Enter ..."></textarea>
             </div>
             <div class="row row-check">
                 <div class="col-xs-9">
                 </div>
-      
-            </div>
-            <div class="col-xs-3">
-                	
+                <div class="col-xs-3">
+                	<input type="hidden" id="customerId" name="customerId" value="<%= session.getAttribute("userId") %>">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
                 </div>
+            </div>
             </form>
             </div>
             <!-- /.box-body -->

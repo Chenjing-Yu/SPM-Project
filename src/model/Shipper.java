@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Shipper {
 
-	
+	public String shipperId;
 	public String username;
 	private String password;
 	private String fullname;
@@ -34,7 +34,14 @@ public class Shipper {
 		this.password = password2;
 	}
 
+	public String getShipperId() {
+		return shipperId;
+	}
 
+	public void setShipperId(String shipperId) {
+		this.shipperId = shipperId;
+	}
+	
 	public String getFullname() {
 		return fullname;
 	}
@@ -119,12 +126,13 @@ public class Shipper {
 	public boolean queryUser(){
 		boolean res = false;
 		try {
-			String sql = "SELECT ShipperId, EmailAddress, Password FROM shipper where EmailAddress='"
+			String sql = "SELECT ShipperId, FullName, EmailAddress, Password FROM shipper where EmailAddress='"
 		+username+"' and Password='"+password + "'";
 			PreparedStatement ps = conn.prepare(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
-				fullname = "Susanto";//rs.getString(1);
+				shipperId = String.valueOf(rs.getInt(1));
+				fullname = rs.getString("FullName");
 				address = "123 Berry Street, Melbourne";
 				phone = "0452222223";
 				res = true;

@@ -29,7 +29,7 @@ public class OrderList {
 	                SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	                order.setBookingTime(f.format(bookingTime));
 	                order.setQuantity(String.valueOf(resultSet.getInt("Quantity")));
-	                order.setArrivalDate(resultSet.getDate("PreferredArrival"));
+	                order.setpreferredArrival(resultSet.getDate("PreferredArrival"));
 	                order.setStatus(resultSet.getString("Status"));
 	                orderlist.add(order);
 	            }
@@ -55,8 +55,8 @@ public class OrderList {
 	                SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	                order.setBookingTime(f.format(bookingTime));
 	                order.setQuantity(String.valueOf(resultSet.getInt("Quantity")));
-	                order.setDepartureDate(resultSet.getDate("PreferredDeparture"));
-	                order.setArrivalDate(resultSet.getDate("PreferredArrival"));
+	                order.setpreferredDeparture(resultSet.getDate("PreferredDeparture"));
+	                order.setpreferredArrival(resultSet.getDate("PreferredArrival"));
 	                order.setPickupAddress(resultSet.getString("Address"));
 	                order.setStatus(resultSet.getString("Status"));
 	                orderlist.add(order);

@@ -47,6 +47,7 @@ public class LoginController extends HttpServlet {
 		
 		if (result.equals("success")) {
 			System.out.println("authentication success");
+			String userId = authenticator.getId();
 			String fullname = authenticator.getFullname();
 			String emailid = username;
 			String content = "Hi, you have successfully logged in. If you didnot do login please contact customer care.";
@@ -61,13 +62,14 @@ public class LoginController extends HttpServlet {
 			}
 			System.out.println(fullname);
 			String role = authenticator.getRole();
+			request.getSession().setAttribute("userId", userId);
 			request.getSession().setAttribute("loginusername", username);
 			request.getSession().setAttribute("loginfullname", fullname);
 			request.getSession().setAttribute("userRole", role);
-			System.out.println(request.getSession().getAttribute("loginfullname"));
+			System.out.println("LoginController:"+request.getSession().getAttribute("userId"));
 			if		(role.equalsIgnoreCase("customer")) {rd = request.getRequestDispatcher("book.jsp");		}
 			else if (role.equalsIgnoreCase("shipper")) {rd = request.getRequestDispatcher("OrderListController");		}
-			else if (role.equalsIgnoreCase("collector")) {rd = request.getRequestDispatcher("book.jsp");		}
+			else if (role.equalsIgnoreCase("collector")) {rd = request.getRequestDispatcher("OrderListController");		}
 			rd.forward(request, response);
 			
 		} else {

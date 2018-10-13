@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class User {
-	 
+	private String userId;
 	public String username;
 	private String password;
 	private String fullname;
@@ -35,7 +35,14 @@ public class User {
 		this.password = password2;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
 	public String getFullname() {
 		return fullname;
 	}
@@ -120,15 +127,16 @@ public class User {
 	public boolean queryUser(){
 		boolean res = false;
 		try {
-			String sql = "SELECT FullName, EmailAddress, Address, PhoneNUM, Password FROM customer where EmailAddress='"
+			String sql = "SELECT CustomerID, FullName, EmailAddress, Address, PhoneNUM, Password FROM customer where EmailAddress='"
 		+username+"' and Password='"+password + "'";
 			System.out.println(sql);
 			PreparedStatement ps = conn.prepare(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
-				fullname = rs.getString(1);
-				address = rs.getString(3);
-				phone = rs.getString(4);
+				userId = String.valueOf(rs.getInt(1));
+				fullname = rs.getString(2);
+				address = rs.getString(4);
+				phone = rs.getString(5);
 				res = true;
 			}
 			else {
