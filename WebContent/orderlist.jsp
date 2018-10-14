@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,8 +132,8 @@
                   <td>${order.customerName}</td>
                   <td>${order.bookingTime}</td>
                   <td>${order.quantity}</td>
-                  <td>${order.preferredDeparture}</td>
-                  <td>${order.preferredArrival}</td>
+                  <td>${order.departureDate}</td>
+                  <td>${order.arrivalDate}</td>
                   <td>${order.pickupAddress}</td>
                   <td>
                   <form action="UpdateStatusController" method ="post">

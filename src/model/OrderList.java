@@ -17,7 +17,6 @@ public class OrderList {
 	public List<Shipment> getHistory(int customerID) {
 		List<Shipment> orderlist = new ArrayList<Shipment>();
 		try {
-			    System.out.println("OrderList.getHistory.start");
 	            PreparedStatement sql = conn.prepare("SELECT ShippingID, BookingTime, Quantity, Status, PreferredArrival FROM Shipping NATURAL JOIN Customer WHERE CustomerID=?");
 	            sql.setInt(1, customerID);
 	            ResultSet resultSet = sql.executeQuery();
@@ -38,13 +37,10 @@ public class OrderList {
 	            ex.printStackTrace();
 	        }
 
-	    System.out.println("OrderList.getHistory.end");
 	        return orderlist;
-	        
 	}
 	
 	public List<Shipment> getOrders() {
-	    System.out.println("OrderList.getOrders.start");
 		List<Shipment> orderlist = new ArrayList<Shipment>();
 		try {
 	            PreparedStatement sql = conn.prepare("SELECT ShippingID, CustomerID, FullName, BookingTime, Quantity, PreferredDeparture, PreferredArrival, Address, Status, Cost FROM Shipping NATURAL JOIN Customer");
@@ -60,19 +56,17 @@ public class OrderList {
 	                order.setBookingTime(f.format(bookingTime));
 	                order.setQuantity(String.valueOf(resultSet.getInt("Quantity")));
 	                order.setpreferredDeparture(resultSet.getDate("PreferredDeparture"));
-	                System.out.println("OrderList.PreferredDeparture="+order.getPreferredDeparture());
 	                order.setpreferredArrival(resultSet.getDate("PreferredArrival"));
-	                System.out.println("OrderList.PreferredArrival="+order.getPrefferedArrival());
 	                order.setPickupAddress(resultSet.getString("Address"));
 	                order.setStatus(resultSet.getString("Status"));
 	                orderlist.add(order);
+	                System.out.println(order.departureDate);
 	            }
 	            System.out.println("Successfully get the orders:" + orderlist.get(0).customerName);
 	        } catch (SQLException ex) {
 	            ex.printStackTrace();
 	        }
 
-	    System.out.println("OrderList.getOrders.end");
 	        return orderlist;
 	}
 }

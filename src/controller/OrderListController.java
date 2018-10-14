@@ -39,20 +39,14 @@ public class OrderListController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("OrderListController.doPost.start");
 		String userId = String.valueOf(request.getSession().getAttribute("userId"));
 		String role = String.valueOf(request.getSession().getAttribute("userRole"));
-		System.out.println("OrderListController.doPost:userId="+userId+";role="+role);
 		List<Shipment> orderList;
-		if (role.equalsIgnoreCase("customer")) {
-			orderList = orderManager.getHistory(Integer.parseInt(userId));
-		}
-		else {
-			orderList = orderManager.getOrders();
-		}
+		System.out.println("OrderListController.doPost.userId="+userId);
+		if		(role.equalsIgnoreCase("customer")) {orderList = orderManager.getHistory(Integer.parseInt(userId));}
+		else {orderList = orderManager.getOrders();}
         request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
         request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
-		System.out.println("OrderListController.doPost.end");
 	}
 
 }

@@ -226,7 +226,6 @@ public class Shipment {
 				+ "WHERE shippingID=?";
 		try {
 			PreparedStatement ps = conn.prepare(sql);
-			System.out.println("Shipment.readOrder");
 			ps.setInt(1, Integer.parseInt(this.orderId));
 			ResultSet result = ps.executeQuery();
 			if (result.next()) {
@@ -236,9 +235,7 @@ public class Shipment {
                 this.customerName = String.valueOf(result.getString("CustomerName"));
                 this.message = result.getString("CustomerMessage");
                 this.preferredDeparture = result.getDate("PreferredDeparture");
-                System.out.println("Shipment.PreferredDeparture="+preferredDeparture);
                 this.preferredArrival = result.getDate("PreferredArrival");
-                System.out.println("Shipment.preferredArrival="+preferredArrival);
                 Timestamp bookTime = result.getTimestamp("BookingTime");
                 this.bookingTime = f.format(bookTime);
                 this.quantity = String.valueOf(result.getInt("Quantity"));
