@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.OrderList;
 import model.Shipment;
 import utils.Mailer;
 
@@ -26,14 +24,12 @@ public class AckSubmitController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String host;
     private String port;
-    private OrderList orderManager;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public AckSubmitController() {
         super();
-        orderManager = new OrderList();
         // TODO Auto-generated constructor stub
     }
     public void init() {
@@ -88,8 +84,6 @@ public class AckSubmitController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		List<Shipment> orderList = orderManager.getOrders();
-        request.setAttribute("orders", orderList);
 		request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
 	}
 

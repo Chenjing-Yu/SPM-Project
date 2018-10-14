@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Collector {
 
-	public String collectorId;
+	
 	public String username;
 	private String password;
 	private String fullname;
@@ -34,14 +34,7 @@ public class Collector {
 		this.password = password2;
 	}
 
-	public String getCollectorId() {
-		return collectorId;
-	}
 
-	public void setCollectorId(String collectorId) {
-		this.collectorId = collectorId;
-	}
-	
 	public String getFullname() {
 		return fullname;
 	}
@@ -131,8 +124,7 @@ public class Collector {
 			PreparedStatement ps = conn.prepare(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
-				collectorId = String.valueOf(rs.getInt(1));
-				fullname = rs.getString("FullName");
+				fullname = "Alexendra";//rs.getString(1);
 				address = "123 Queen Street, Jakarta";
 				phone = "0882222223";
 				res = true;

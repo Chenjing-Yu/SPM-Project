@@ -47,12 +47,6 @@
     <servlet-name>AckSubmitController</servlet-name>
     <servlet-class>controller.AckSubmitController</servlet-class>
   </servlet>
-  <servlet>
-    <description></description>
-    <display-name>OrderDetailController</display-name>
-    <servlet-name>OrderDetailController</servlet-name>
-    <servlet-class>controller.OrderDetailController</servlet-class>
-  </servlet>
  
   <context-param>
     <param-name>host</param-name>

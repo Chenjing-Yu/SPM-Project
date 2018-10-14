@@ -65,9 +65,6 @@ public class BookController extends HttpServlet {
 		@SuppressWarnings("unused")
 		HttpSession httpSession = request.getSession();
 		RequestDispatcher rd = null;
-		//String customerID = (String) httpSession.getAttribute("username");
-		String customerID = request.getParameter("customerId");
-		System.out.print("BookController: customerID=" + customerID);
 		String quantity = request.getParameter("quantity");
 		String address = request.getParameter("address");
 		java.sql.Date arrivalDate = null;
@@ -77,11 +74,12 @@ public class BookController extends HttpServlet {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		java.util.Date dDate = sdf1.parse(startDate);
 		 departureDate = new java.sql.Date(dDate.getTime()); 
-		String startDate2= request.getParameter("arrivalDate");
+		String startDate2= request.getParameter("departureDate");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("MM-dd-yyyy");
 		java.util.Date aDate = sdf2.parse(startDate2);
 		arrivalDate = new java.sql.Date(aDate.getTime()); 
 		String message = request.getParameter("message");
+		String customerID = (String) httpSession.getAttribute("username");
 		String EmailContent = "Hello your shipment request is recived and your order is processing, stay tuned for updates!";
 		
 		Shipment  shipment =new Shipment(quantity,address,departureDate,arrivalDate,message,customerID);
@@ -95,7 +93,7 @@ public class BookController extends HttpServlet {
 		response.setContentType("text/html");  
 		out.println("<script type=\"text/javascript\">");  
 		out.println("alert('order success');");  
-		out.println("window.location.href = 'book.jsp';");
+		out.println("window.location.href = 'index.jsp';");
 		out.println("</script>");
 		}
 		else {rd = request.getRequestDispatcher("/error.jsp");}

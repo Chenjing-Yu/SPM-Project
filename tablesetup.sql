@@ -41,7 +41,6 @@ DROP TABLE IF EXISTS `mydb`.`Shipper` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Shipper` (
   `ShipperID` SMALLINT NOT NULL,
-  `FullName` VARCHAR(50) NOT NULL,
   `EmailAddress` VARCHAR(30) NOT NULL,
   `PassWord` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`ShipperID`))
@@ -55,7 +54,6 @@ DROP TABLE IF EXISTS `mydb`.`Collector` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Collector` (
   `CollectorID` SMALLINT NOT NULL AUTO_INCREMENT,
-  `FullName` VARCHAR(50) NOT NULL,
   `EmailAddress` VARCHAR(30) NOT NULL,
   `PassWord` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`CollectorID`))
@@ -79,9 +77,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Shipping` (
   `ShipperID` SMALLINT NULL,
   `Status` ENUM('To be Approved', 'Request Accepted', 'Pick-up Scheduled', 'To be Shipped', 'Shipped', 'Arrived at Destination', 'Delivered', 'Delivery Delayed') NOT NULL DEFAULT 'To be Approved',
   `AcknowledgeTime` TIMESTAMP NULL,
-  `DepartureDate` TIMESTAMP NULL,
-  `ArrivalDate` TIMESTAMP NULL,
-  `DeliveryDate` TIMESTAMP NULL,
+  `DepartureDate` DATE NULL,
   `ShipperMessage` VARCHAR(100) NULL,
   `PickupTime` DATETIME NULL,
   `HBL` VARCHAR(50) NULL,
@@ -157,9 +153,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 INSERT INTO Shipper
-VALUES (1, "Susanto", "susantoLogic@gmail.com", "123");
+VALUES (1, "susantoLogic@gmail.com", "susanto123");
 
 INSERT INTO Collector
-VALUES (1, "Alexandra", "susanto0468111111@gmail.com", "123");
+VALUES (1, "susanto0468111111@gmail.com", "susanto123");
 
 SET SQL_SAFE_UPDATES = 0;

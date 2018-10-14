@@ -42,13 +42,11 @@ public class AckController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("AckController: doPost-i");
 		String orderId = request.getParameter("orderId");
 		Shipment order = new Shipment(orderId);
 		order.readOrder();
 		request.setAttribute("order", order);
 		request.getRequestDispatcher("/ackbook.jsp").forward(request, response);
-		System.out.println("AckController: doPost-o");
 	}
 
 }

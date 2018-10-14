@@ -32,6 +32,10 @@ public class OrderListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("doGet");
+		List<Shipment> orderList = orderManager.getOrders();
+        request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
+        request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
 	}
 
 	/**
@@ -39,14 +43,7 @@ public class OrderListController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userId = String.valueOf(request.getSession().getAttribute("userId"));
-		String role = String.valueOf(request.getSession().getAttribute("userRole"));
-		List<Shipment> orderList;
-		System.out.println("OrderListController.doPost.userId="+userId);
-		if		(role.equalsIgnoreCase("customer")) {orderList = orderManager.getHistory(Integer.parseInt(userId));}
-		else {orderList = orderManager.getOrders();}
-        request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
-        request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
+		doGet(request, response);
 	}
 
 }
