@@ -57,7 +57,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="boxFly.html" class="navbar-brand"><b>BoxFly</b></a>
+          <a href="index.jsp" class="navbar-brand"><b>BoxFly</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -66,8 +66,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="boxFly.html">Home<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Order Shipment</a></li>
+            <li class="active"><a href="index.jsp">Home<span class="sr-only">(current)</span></a></li>
+            <li><a href="order.jsp">Order Shipment</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
         </div>
@@ -253,9 +253,11 @@
       </section>
       <section class="content" id="section-book">
         <div class="main-order">
-          <div class="order-btn">
+        <!--
+			<div class="order-btn">
             <button type="button" class="btn btn-block btn-lg">Book a shipment</button>
           </div>
+         -->
         </div>
       </section>
       <!-- /.content -->

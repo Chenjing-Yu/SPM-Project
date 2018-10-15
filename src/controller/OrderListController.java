@@ -33,7 +33,16 @@ public class OrderListController extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("doGet");
-		List<Shipment> orderList = orderManager.getOrders();
+		String role = String.valueOf(request.getSession().getAttribute("userRole"));
+		String fullname = String.valueOf(request.getSession().getAttribute("loginfullname"));
+		System.out.println("OrderListController.doPost:role="+role);
+		List<Shipment> orderList;
+		if (role.equalsIgnoreCase("customer")) {
+			orderList = orderManager.getHistory(fullname);
+		}
+		else {
+			orderList = orderManager.getOrders();
+		}
         request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
         request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
 	}

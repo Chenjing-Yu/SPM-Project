@@ -50,7 +50,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="boxFly.html">Home</a></li>
+            <li><a href="index.jsp">Home</a></li>
             <li><a href="#">Order Shipment</a></li>
             <li><a href="#">Track Order</a></li>
             <li><a href="#">Contact Us</a></li>
@@ -127,7 +127,7 @@
             <li><span>Pickup Address</span>: <span>${order.pickupAddress}</span></li>
             <li><span>Pickup Time</span>: <span>${order.pickupTime}</span></li>
             <li><span>Preferred Departure Date</span>: <span>${order.preferredDeparture}</span></li>
-            <li><span>Preferred Arrival Date</span>: <span>${order.preferredArrival}</span></li>
+            <li><span>Preferred Arrival Date</span>: <span>2018-10-25</span></li>
             <li><span>Cost</span>: <span>${order.cost}</span></li>
             <li><span>Status</span>: <span>${order.status}</span></li>
             <li><span>Message to shipper</span>: <span>${order.message}</span></li>
@@ -157,6 +157,12 @@
             <tr>
               <td>${order.departureDate}</td>
               <td>Shipped.</td>
+            </tr>
+            </c:if>
+            <c:if test="${not empty order.acknowledgeTime}">
+            <tr>
+              <td>${order.acknowledgeTime}</td>
+              <td>Shipment acknowledged.</td>
             </tr>
             </c:if>
             <tr>

@@ -67,7 +67,7 @@ public class LoginController extends HttpServlet {
 			System.out.println(request.getSession().getAttribute("loginfullname"));
 			if		(role.equalsIgnoreCase("customer")) {rd = request.getRequestDispatcher("book.jsp");		}
 			else if (role.equalsIgnoreCase("shipper")) {rd = request.getRequestDispatcher("OrderListController");		}
-			else if (role.equalsIgnoreCase("collector")) {rd = request.getRequestDispatcher("book.jsp");		}
+			else if (role.equalsIgnoreCase("collector")) {rd = request.getRequestDispatcher("OrderListController");		}
 			rd.forward(request, response);
 			
 		} else {

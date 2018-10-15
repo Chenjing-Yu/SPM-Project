@@ -47,8 +47,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="boxFly.html">Home</a></li>
-            <li><a href="#">Order Shipment</a></li>
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="order.jsp">Order Shipment</a></li>
             <li><a href="#">Track Order</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>

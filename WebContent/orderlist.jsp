@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +51,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="boxFly.html">Home</a></li>
-            <li><a href="#">Order Shipment</a></li>
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="order.jsp">Order Shipment</a></li>
             <li><a href="#">Track Order</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
@@ -132,8 +133,8 @@
                   <td>${order.customerName}</td>
                   <td>${order.bookingTime}</td>
                   <td>${order.quantity}</td>
-                  <td>${order.departureDate}</td>
-                  <td>${order.arrivalDate}</td>
+                  <td>${order.preferredDeparture}</td>
+                  <td>2018-10-24</td>
                   <td>${order.pickupAddress}</td>
                   <td>
                   <form action="UpdateStatusController" method ="post">

@@ -54,8 +54,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="boxFly.html">Home</a></li>
-            <li class="active"><a href="book.html">Order Shipment</a></li>
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="#">Order Shipment</a></li>
             <li><a href="#">Track Order</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
@@ -176,12 +176,10 @@
             <div class="row row-check">
                 <div class="col-xs-9">
                 </div>
-      
-            </div>
-            <div class="col-xs-3">
-                	
+            	<div class="col-xs-3">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
                 </div>
+            </div>
             </form>
             </div>
             <!-- /.box-body -->

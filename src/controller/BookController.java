@@ -53,8 +53,8 @@ public class BookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("BookController.doGet");
-		RequestDispatcher rd = null;
-		rd = request.getRequestDispatcher("/book.jsp");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/book.jsp").forward(request, response);
 	}
 
 	/**
@@ -64,6 +64,7 @@ public class BookController extends HttpServlet {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unused")
 		HttpSession httpSession = request.getSession();
+		System.out.println("BookController.doPost");
 		RequestDispatcher rd = null;
 		String quantity = request.getParameter("quantity");
 		String address = request.getParameter("address");
@@ -74,27 +75,30 @@ public class BookController extends HttpServlet {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		java.util.Date dDate = sdf1.parse(startDate);
 		 departureDate = new java.sql.Date(dDate.getTime()); 
-		String startDate2= request.getParameter("departureDate");
+		String startDate2= request.getParameter("arrivalDate");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("MM-dd-yyyy");
 		java.util.Date aDate = sdf2.parse(startDate2);
 		arrivalDate = new java.sql.Date(aDate.getTime()); 
 		String message = request.getParameter("message");
-		String customerID = (String) httpSession.getAttribute("username");
+		String userName = (String) httpSession.getAttribute("loginusername");
+		System.out.println("EmailAddress:"+userName);
 		String EmailContent = "Hello your shipment request is recived and your order is processing, stay tuned for updates!";
 		
-		Shipment  shipment =new Shipment(quantity,address,departureDate,arrivalDate,message,customerID);
+		Shipment  shipment =new Shipment(quantity,address,departureDate,arrivalDate,message,userName);
 		
 		boolean createRecord = shipment.createRecord();
 		if(createRecord) {
 		System.out.println("Your shipment record has been successfuly created"+quantity+message);
 		 //Mailer.sendMail(host, port, user, pass,customerID, EmailContent);
-		Mailer.sendEmail(host, port, customerID, EmailContent);
+		Mailer.sendEmail(host, port, userName, EmailContent);
 		PrintWriter out = response.getWriter();  
 		response.setContentType("text/html");  
 		out.println("<script type=\"text/javascript\">");  
 		out.println("alert('order success');");  
-		out.println("window.location.href = 'index.jsp';");
+		out.println("window.location.href = 'book.jsp';");
 		out.println("</script>");
+		System.out.print("not alerted");
+		//doGet(request, response);
 		}
 		else {rd = request.getRequestDispatcher("/error.jsp");}
 		

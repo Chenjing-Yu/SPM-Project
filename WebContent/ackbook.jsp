@@ -121,8 +121,8 @@
           <form action="AckSubmitController" method="post">
             <div class="form-group">
               <label>Status</label>
-              <select class="form-control" name="status">
-                <option value=${order.status}>${order.status}</option>
+              <select class="form-control" name="status" disabled>
+                <option value=${order.status}>Request Accepted</option>
                 <option value="To be Approved">To be Approved</option>
                 <option value="Request Accepted">Request Accepted</option>
                 <option value="Pick-up Scheduled">Pick-up Scheduled</option>
