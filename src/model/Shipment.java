@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 public class Shipment {
 
@@ -285,7 +286,7 @@ public class Shipment {
 		System.out.println("Shipment.createRecord.result="+result);
 		return result;
 	}
-	public BigDecimal  getCost() {	return new BigDecimal( Integer.parseInt(quantity)*costOfSmallBox);	}
+	public BigDecimal  getCost() {	return new BigDecimal( Integer.parseInt(this.quantity)*costOfSmallBox);	}
 	
 	public String getOrderEmail() {
 		if (this.orderId.isEmpty()) {
@@ -340,12 +341,26 @@ public class Shipment {
 	        ps.setString(10, address);
 	        //HBL
 	        ps.setString(11, "1234567");
-	        
-	        
+	        PreparedStatement ps2 = conn.prepare("SELECT  CustomerID FROM customer WHERE customer.EmailAddress="+"'"+this.customerID+"'"+";");
+	        System.out.println("SELECT  CustomerID FROM customer WHERE customer.EmailAddress="+this.customerID+";");
+	        ResultSet r1 =ps2.executeQuery();
+	        int cID = 0;
+	        while(r1.next())
+	        {
+	         cID= r1.getInt("CustomerID");
+	        }
+	      
+	       
+	        int dummycost = Integer.parseInt(this.quantity)*25;
+	        java.sql.Date currentTime = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 	        //PreparedStatement ps = conn.prepare("INSERT INTO customer (FullName, EmailAddress, Address, PhoneNUM, Password)"
 			//+ " VALUES ('" + fullname + "','" + username + "','" + address + "','" + phone + "','" + password + "');");
+	        
 	        ps = conn.prepare("INSERT INTO Shipping(CustomerID,Quantity,CustomerMessage,PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,Status,CollectorID,DeliveryAddress,HBL) " + 
-	        		" VALUES ('" + this.customerID + "','" + this.quantity + "','" + this.message + "','" + this.preferredDeparture+ "','" + this.preferredArrival+ "','" + this.bookingTime+ "','" + getCost()+ "','" + 1+ "','" + 1 + "','" + this.address+ "','" + this.hblNumber + "');");
+	        		" VALUES ('" + cID + "','" + this.quantity + "','" + this.message + "','" + this.preferredDeparture+ "','" + this.preferredArrival+ "','" + currentTime+ "','" + dummycost+ "','" + 1+ "','" + 1+ "','"+ 1 + "','" + this.address+ "','" + this.hblNumber + "');");
+	        String intQuery = ("INSERT INTO Shipping(CustomerID,Quantity,CustomerMessage,PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,Status,CollectorID,DeliveryAddress,HBL) " + 
+	        		" VALUES ('" + cID + "','" + this.quantity + "','" + this.message + "','" + this.preferredDeparture+ "','" + this.preferredArrival+ "','" + currentTime+ "','" + dummycost+ "','" + 1+ "','" + 1+ "','"+ 1 + "','" + this.address+ "','" + this.hblNumber + "');");
+	        System.out.println(intQuery);
 	        int i = ps.executeUpdate();
 	        readDB();
 	        System.out.println("sql Executed:"+i);
