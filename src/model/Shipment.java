@@ -358,7 +358,7 @@ public class Shipment {
 	        ex.printStackTrace();
 	    }
 	    return false;
-	}
+	}//query fix
 	
 	public boolean ackUserShipment(Timestamp pickuptime) {
 	    try {
