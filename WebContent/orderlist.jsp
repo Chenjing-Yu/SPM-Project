@@ -93,7 +93,7 @@
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs"><c:out value='${sessionScope.loginfullname}'/></span>
               </a>
-              <ul class="dropdown-menu" role="menu">
+              <ul class="dropdown-menu" role="menu" style="display: none">
                 <li><a href="#">My profile</a></li>
                 <li><a href="#">My bookings</a></li>
               </ul>

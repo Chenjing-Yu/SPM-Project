@@ -91,7 +91,12 @@
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="profile.html">My profile</a></li>
-                <li><a href="bookhistory.html">My bookings</a></li>
+                <li><a>
+                <form action="OrderListController" method="post">
+                <button type="submit" style="border: none; background: none">My bookings</button>
+                </form>
+                </a>
+                </li>
               </ul>
             </li>
           </ul>

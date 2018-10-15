@@ -32,19 +32,25 @@ public class OrderListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("doGet");
+		System.out.println("OrderListController:doGet");
 		String role = String.valueOf(request.getSession().getAttribute("userRole"));
-		String fullname = String.valueOf(request.getSession().getAttribute("loginfullname"));
+		String username = String.valueOf(request.getSession().getAttribute("loginusername"));
 		System.out.println("OrderListController.doPost:role="+role);
 		List<Shipment> orderList;
 		if (role.equalsIgnoreCase("customer")) {
-			orderList = orderManager.getHistory(fullname);
+			System.out.println("this is a customer:"+username);
+			orderList = orderManager.getHistory(username);
+	        request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
+	        System.out.println("setAttribute:orderList with size="+orderList.size());
+	        request.getRequestDispatcher("/bookhistory.jsp").forward(request, response);
 		}
 		else {
 			orderList = orderManager.getOrders();
+	        request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
+	        request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
 		}
-        request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
-        request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
+//        request.setAttribute("orders", orderList); // Will be available as ${orders} in JSP
+//        request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
 	}
 
 	/**

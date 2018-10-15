@@ -17,7 +17,7 @@ public class OrderList {
 	public List<Shipment> getHistory(String userName) {
 		List<Shipment> orderlist = new ArrayList<Shipment>();
 		try {
-			    System.out.println("OrderList.getHistory.start");
+			    System.out.println("OrderList.getHistory.start, username="+userName);
 	            PreparedStatement sql = conn.prepare("SELECT ShippingID, BookingTime, Quantity, Status, PreferredArrival FROM Shipping NATURAL JOIN Customer WHERE EmailAddress=?");
 	            sql.setString(1, userName);
 	            ResultSet resultSet = sql.executeQuery();
@@ -37,9 +37,9 @@ public class OrderList {
 	        } catch (SQLException ex) {
 	            ex.printStackTrace();
 	        }
-
+        System.out.println("get orders:"+ orderlist.size());
 	    System.out.println("OrderList.getHistory.end");
-	        return orderlist;
+	    return orderlist;
 	        
 	}
 	

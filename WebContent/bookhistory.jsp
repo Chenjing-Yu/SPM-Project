@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,7 +90,7 @@
                 <!-- The user image in the navbar-->
                 <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Alexander Pierce</span>
+                <span class="hidden-xs"><c:out value='${sessionScope.loginfullname}'/></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">My profile</a></li>
@@ -119,19 +119,24 @@
                   <th>Ordered time</th>
                   <th>Box quantity</th>
                   <th>Status</th>
-                  <th>Arrival estimation</th>
                   <th>Cost</th>
                   <th style="width: 40px">Option</th>
                 </tr>
-                <tr>
-                  <td>00000001</td>
-                  <td>15/09/2018</td>
-                  <td>3</td>
-                  <td>Shipped</td>
-                  <td>15/10/2018</td>
-                  <td>$105</td>
-                  <td><a href="details.html">Details</a></td>
+                 <c:forEach items="${orders}" var="order">
+                 <tr>
+                  <td>${order.orderId}</td>
+                  <td>${order.bookingTime}</td>
+                  <td>${order.quantity}</td>
+                  <td>${order.status}</td>
+                  <td>${order.cost}</td>
+                  <td>
+                  <form action="OrderDetailController" method="get">
+                  <input type="hidden" id="orderId-d" name="orderId" value=${order.orderId}>
+                  	<button type="submit" class="btn btn-primary btn-block btn-flat">Details</button>
+                  </form>
+                  </td>
                 </tr>
+                 </c:forEach>
               </table>
             </div>
             <!-- /.box-body -->
