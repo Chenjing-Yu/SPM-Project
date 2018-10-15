@@ -61,6 +61,7 @@ public class Shipment {
 		
 		//this.collectorID = "1";
 		this.customerID = UserEmail;
+		this.hblNumber="HBL21342j3nfejwhfw23kkfw";
 	}
 	
 	public Shipment(String orderId) {
@@ -340,8 +341,11 @@ public class Shipment {
 	        //HBL
 	        ps.setString(11, "1234567");
 	        
+	        
+	        //PreparedStatement ps = conn.prepare("INSERT INTO customer (FullName, EmailAddress, Address, PhoneNUM, Password)"
+			//+ " VALUES ('" + fullname + "','" + username + "','" + address + "','" + phone + "','" + password + "');");
 	        ps = conn.prepare("INSERT INTO Shipping(CustomerID,Quantity,CustomerMessage,PreferredDeparture,PreferredArrival,BookingTime,Cost,ShipperID,Status,CollectorID,DeliveryAddress,HBL) " + 
-	        		"SELECT  CustomerID, 3, '1','2018-04-18', '2018-04-18', '2018-10-06 15:25:00',115, 1, 1,1,'address','HBL' FROM customer WHERE customer.EmailAddress='ycjing90@google.com'");
+	        		" VALUES ('" + this.customerID + "','" + this.quantity + "','" + this.message + "','" + this.preferredDeparture+ "','" + this.preferredArrival+ "','" + this.bookingTime+ "','" + getCost()+ "','" + 1+ "','" + 1 + "','" + this.address+ "','" + this.hblNumber + "');");
 	        int i = ps.executeUpdate();
 	        readDB();
 	        System.out.println("sql Executed:"+i);

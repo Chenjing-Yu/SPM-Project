@@ -33,6 +33,5 @@
 	<classpathentry kind="lib" path="C:/Program Files/Apache/apache-tomcat-8.5.5/lib/tomcat-util-scan.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache/apache-tomcat-8.5.5/lib/tomcat-websocket.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache/apache-tomcat-8.5.5/lib/websocket-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/asus/Desktop/icu4j-normalizer.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
